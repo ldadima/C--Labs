@@ -52,6 +52,12 @@
     <ItemGroup>
       <None Include="packages.config" />
     </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\MarketTests\MarketTests.csproj">
+        <Project>{02576e28-36a5-4d4a-be93-f5e8cf26e527}</Project>
+        <Name>MarketTests</Name>
+      </ProjectReference>
+    </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
       <PropertyGroup>
