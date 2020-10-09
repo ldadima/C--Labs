@@ -1,0 +1,6 @@
+D:\My\C#-Prog\RandNumber\NumberProj\bin\Debug\NumberProj.exe
+D:\My\C#-Prog\RandNumber\NumberProj\bin\Debug\NumberProj.pdb
+D:\My\C#-Prog\RandNumber\NumberProj\obj\Debug\NumberProj.csprojAssemblyReference.cache
+D:\My\C#-Prog\RandNumber\NumberProj\obj\Debug\NumberProj.csproj.CoreCompileInputs.cache
+D:\My\C#-Prog\RandNumber\NumberProj\obj\Debug\NumberProj.exe
+D:\My\C#-Prog\RandNumber\NumberProj\obj\Debug\NumberProj.pdb
