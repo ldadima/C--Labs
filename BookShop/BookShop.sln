@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookShop", "BookShop\BookShop.csproj", "{C84E9D0B-6E75-4AB9-B898-01614BCD8BB2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopTests", "ShopTests\ShopTests.csproj", "{C042BAEA-102B-4836-8454-D84B036698BD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C84E9D0B-6E75-4AB9-B898-01614BCD8BB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C84E9D0B-6E75-4AB9-B898-01614BCD8BB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C84E9D0B-6E75-4AB9-B898-01614BCD8BB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C84E9D0B-6E75-4AB9-B898-01614BCD8BB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C042BAEA-102B-4836-8454-D84B036698BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C042BAEA-102B-4836-8454-D84B036698BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C042BAEA-102B-4836-8454-D84B036698BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C042BAEA-102B-4836-8454-D84B036698BD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
