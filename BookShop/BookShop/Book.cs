@@ -4,7 +4,7 @@ namespace BookShop
 {
     public class Book
     {    
-        public Guid Id { get;  }
+        public long Id { get;  }
         private double Price { get; }
         
         public double CurrentPrice { get; private set; }
@@ -19,12 +19,13 @@ namespace BookShop
 
         public bool Novelty { get; }
 
-        public Book(double price, Guid id, Genre genre, bool novelty)
+        public Book(double price, long id, Genre genre, bool novelty)
         {
             Id = id;
             BookGenre = genre;
             this.Novelty = novelty;
             Price = price;
+            CurrentPrice = Price;
         }
 
         public void ChangePrice(double percent)

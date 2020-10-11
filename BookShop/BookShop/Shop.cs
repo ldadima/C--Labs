@@ -1,19 +1,43 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BookShop
 {
-    public class Shop
+    public interface IShopLibrary
     {
-        public readonly List<Book> Books = new List<Book>();
+        bool FewBooksLeft();
+
+        bool ALotOfOldBooks();
+
+        bool SaleBook(long id);
+
+        int ReceptionBook(Book book);
+
+        void BeginSale();
+
+        void EndSale();
+    }
+    public class ShopLibrary: IShopLibrary
+    {
+        public List<Book> Books { get; } = new List<Book>();
         private readonly int _capacity;
 
-        public Shop(int capacity)
+        public ShopLibrary(int capacity, double balance)
         {
             this._capacity = capacity;
+            Balance = balance;
+        }
+        
+        public ShopLibrary(int capacity, double balance, List<Book> beginBooks)
+        {
+            this._capacity = capacity;
+            Balance = balance;
+            Books.AddRange(beginBooks);
         }
 
-        private double Balance { set; get; }
-        
+        public double Balance { private set; get; }
+
         public const double FantasySale = 0.03;
         public const double AdventureSale = 0.07;
         public const double EncyclopediaSale = 0.1;
@@ -21,12 +45,12 @@ namespace BookShop
         private const double PercentLeft = 0.1;
         private const double OldBooks = 0.75;
 
-        public void AddBalance(double plus)
+        private void AddBalance(double plus)
         {
             Balance += plus;
         }
 
-        public bool ReduceBalance(double reduce)
+        private bool ReduceBalance(double reduce)
         {
             if (reduce > Balance) return false;
             Balance -= reduce;
@@ -45,11 +69,49 @@ namespace BookShop
             return count / Books.Count >= OldBooks;
         }
 
-        public bool AddBook(Book book)
+        public bool SaleBook(long id)
         {
-            if (_capacity == Books.Count) return false;
-            Books.Add(book);
+            var find = Books.FirstOrDefault(book => book.Id == id);
+            if (find == null) return false;
+            AddBalance(find.CurrentPrice);
+            Books.Remove(find);
             return true;
+        }
+
+        public int ReceptionBook(Book book)
+        {
+            if (_capacity == Books.Count) return -3;
+            if (Books.FirstOrDefault(bookL => bookL.Id == book.Id) != null) return -1;
+            if (!ReduceBalance(book.CurrentPrice * 0.07)) return -2;
+            Books.Add(book);
+            return 0;
+        }
+
+        public void BeginSale()
+        {
+            foreach (var book in Books)
+            {
+                switch (book.BookGenre)
+                {
+                    case Book.Genre.Adventure:
+                        book.ChangePrice(AdventureSale);
+                        break;
+                    case Book.Genre.Fantasy:
+                        book.ChangePrice(FantasySale);
+                        break;
+                    default:
+                        book.ChangePrice(EncyclopediaSale);
+                        break;
+                }
+            }
+        }
+
+        public void EndSale()
+        {
+            foreach (var book in Books)
+            {
+                book.ReturnPrice();
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -6,19 +6,16 @@ namespace BookShop
 {
     public class MarketSystem
     {
-        private readonly Shop _shop;
+        private readonly IShopLibrary _shop;
 
-        public MarketSystem(int shopCapacity)
+        public MarketSystem(IShopLibrary shop)
         {
-            _shop = new Shop(shopCapacity);
+            _shop = shop;
         }
 
-        public void SaleBook(Guid id)
+        public void SaleBook(long id)
         {
-            var find = _shop.Books.FirstOrDefault(book => book.Id == id);
-            if (find == null) return;
-            _shop.Books.Remove(find);
-            _shop.AddBalance(find.CurrentPrice);
+            if(!_shop.SaleBook(id)) return;
             if (_shop.FewBooksLeft() || _shop.ALotOfOldBooks())
             {
                 DeliveryRequest();
@@ -31,15 +28,15 @@ namespace BookShop
             var count = 0;
             foreach (var book in books)
             {
-                if (!_shop.ReduceBalance(book.CurrentPrice*7/100)) break;
-                _shop.AddBook(book);
-                count++;
+                var err = _shop.ReceptionBook(book);
+                if(err < -2) break;
+                if (err == 0) count++;
             }
             Console.WriteLine($"{count} книг принято");
 
         }
 
-        public void DeliveryRequest()
+        private void DeliveryRequest()
         {
             // something connect with BookDeliver
             Console.WriteLine("Заказ поставки системой");
@@ -47,30 +44,13 @@ namespace BookShop
         
         public void BeginSale()
         {
-            foreach (var book in _shop.Books)
-            {
-                switch (book.BookGenre)
-                {
-                    case Book.Genre.Adventure:
-                        book.ChangePrice(Shop.AdventureSale);
-                        break;
-                    case Book.Genre.Fantasy:
-                        book.ChangePrice(Shop.FantasySale);
-                        break;
-                    default:
-                        book.ChangePrice(Shop.EncyclopediaSale);
-                        break;
-                }
-            }
+            _shop.BeginSale();
             Console.WriteLine("Старт акции");
         }
         
         public void EndSale()
         {
-            foreach (var book in _shop.Books)
-            {
-                book.ReturnPrice();
-            }
+            _shop.EndSale();
             Console.WriteLine("Конец акции");
         }
     }

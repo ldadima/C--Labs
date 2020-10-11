@@ -24,19 +24,43 @@
         <e p="Shop.cs" t="Include" />
       </e>
       <e p="BookShop.sln" t="IncludeFlat" />
-      <e p="packages" t="ExcludeRecursive" />
-      <e p="ShopTests" t="IncludeRecursive">
+      <e p="BookShopTests" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
+        <e p="BookShopTests.csproj" t="IncludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp2.1" t="Include">
-              <e p="ShopTests.AssemblyInfo.cs" t="Include" />
-              <e p="ShopTests.Program.cs" t="Include" />
+              <e p="BookShopTests.AssemblyInfo.cs" t="Include" />
+              <e p="BookShopTests.Program.cs" t="Include" />
             </e>
           </e>
         </e>
-        <e p="ShopTests.csproj" t="IncludeRecursive" />
-        <e p="UnitTest1.cs" t="Include" />
+        <e p="ShopTest.cs" t="Include" />
+        <e p="SystemTest.cs" t="Include" />
+      </e>
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="WebShopApplication" t="IncludeRecursive">
+        <e p="appsettings.Development.json" t="Include" />
+        <e p="appsettings.json" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Controllers" t="Include">
+          <e p="ValuesController.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.1" t="Include">
+              <e p="WebShopApplication.AssemblyInfo.cs" t="Include" />
+              <e p="WebShopApplication.RazorAssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="launchSettings.json" t="Include" />
+        </e>
+        <e p="Startup.cs" t="Include" />
+        <e p="WebShopApplication.csproj" t="IncludeRecursive" />
+        <e p="wwwroot" t="Include" />
       </e>
     </e>
   </component>

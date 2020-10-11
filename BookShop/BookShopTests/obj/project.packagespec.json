@@ -1,10 +1,10 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "D:\\My\\C#-Prog\\CS-Labs\\BookShop\\ShopTests\\ShopTests.csproj",
-    "projectName": "ShopTests",
-    "projectPath": "D:\\My\\C#-Prog\\CS-Labs\\BookShop\\ShopTests\\ShopTests.csproj",
-    "outputPath": "D:\\My\\C#-Prog\\CS-Labs\\BookShop\\ShopTests\\obj\\",
+    "projectUniqueName": "D:\\My\\C#-Prog\\CS-Labs\\BookShop\\BookShopTests\\BookShopTests.csproj",
+    "projectName": "BookShopTests",
+    "projectPath": "D:\\My\\C#-Prog\\CS-Labs\\BookShop\\BookShopTests\\BookShopTests.csproj",
+    "outputPath": "D:\\My\\C#-Prog\\CS-Labs\\BookShop\\BookShopTests\\obj\\",
     "projectStyle": "PackageReference",
     "fallbackFolders": [
       "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -46,6 +46,10 @@
           "target": "Package",
           "version": "[2.1.0, )",
           "autoReferenced": true
+        },
+        "Moq": {
+          "target": "Package",
+          "version": "[4.14.6, )"
         },
         "NUnit3TestAdapter": {
           "target": "Package",
