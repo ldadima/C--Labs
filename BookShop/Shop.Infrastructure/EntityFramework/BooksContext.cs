@@ -16,16 +16,16 @@ namespace Shop.Infrastructure.EntityFramework
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
-            modelBuilder.HasDefaultSchema(DefaultSchemaName);
+            modelBuilder.HasDefaultSchema(DefaultSchemaName); //problem
         }
 
-        public async Task<List<Book>> GetPersons()
+        public async Task<List<Book>> GetBooks()
         {
             return await Set<Book>()
                 .ToListAsync();
         }
 
-        public void AddPerson(Book book)
+        public void AddBook(Book book)
         {
             Set<Book>().Add(book);
         }

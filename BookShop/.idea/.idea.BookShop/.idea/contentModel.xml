@@ -16,7 +16,7 @@
         <e p="MarketSystem.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
-            <e p="netcoreapp2.1" t="Include">
+            <e p="netcoreapp2.2" t="Include">
               <e p="BookShop.AssemblyInfo.cs" t="Include" />
             </e>
           </e>
@@ -29,7 +29,7 @@
         <e p="BookShopTests.csproj" t="IncludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
-            <e p="netcoreapp2.1" t="Include">
+            <e p="netcoreapp2.2" t="Include">
               <e p="BookShopTests.AssemblyInfo.cs" t="Include" />
               <e p="BookShopTests.Program.cs" t="Include" />
             </e>
@@ -43,11 +43,15 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="EntityFramework" t="Include">
           <e p="BooksContext.cs" t="Include" />
-          <e p="Configurations" t="Include" />
+          <e p="BooksContextContextTimeFactory.cs" t="Include" />
+          <e p="BooksContextDbContextFactory.cs" t="Include" />
+          <e p="Configurations" t="Include">
+            <e p="BookConfiguration.cs" t="Include" />
+          </e>
         </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
-            <e p="netcoreapp2.1" t="Include">
+            <e p="netcoreapp2.2" t="Include">
               <e p="Shop.Infrastructure.AssemblyInfo.cs" t="Include" />
             </e>
           </e>
@@ -59,11 +63,12 @@
         <e p="appsettings.json" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="Controllers" t="Include">
+          <e p="BooksController.cs" t="Include" />
           <e p="ValuesController.cs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
-            <e p="netcoreapp2.1" t="Include">
+            <e p="netcoreapp2.2" t="Include">
               <e p="WebShopApplication.AssemblyInfo.cs" t="Include" />
               <e p="WebShopApplication.RazorAssemblyInfo.cs" t="Include" />
             </e>

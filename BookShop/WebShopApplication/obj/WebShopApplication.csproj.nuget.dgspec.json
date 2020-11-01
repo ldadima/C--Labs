@@ -4,6 +4,118 @@
     "D:\\My\\C#-Prog\\CS-Labs\\BookShop\\WebShopApplication\\WebShopApplication.csproj": {}
   },
   "projects": {
+    "D:\\My\\C#-Prog\\CS-Labs\\BookShop\\BookShop\\BookShop.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\My\\C#-Prog\\CS-Labs\\BookShop\\BookShop\\BookShop.csproj",
+        "projectName": "BookShop",
+        "projectPath": "D:\\My\\C#-Prog\\CS-Labs\\BookShop\\BookShop\\BookShop.csproj",
+        "packagesPath": "C:\\Users\\Yoga12\\.nuget\\packages\\",
+        "outputPath": "D:\\My\\C#-Prog\\CS-Labs\\BookShop\\BookShop\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Yoga12\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "D:\\My\\C#-Prog\\CS-Labs\\BookShop\\Shop.Infrastructure\\Shop.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\My\\C#-Prog\\CS-Labs\\BookShop\\Shop.Infrastructure\\Shop.Infrastructure.csproj",
+        "projectName": "Shop.Infrastructure",
+        "projectPath": "D:\\My\\C#-Prog\\CS-Labs\\BookShop\\Shop.Infrastructure\\Shop.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\Yoga12\\.nuget\\packages\\",
+        "outputPath": "D:\\My\\C#-Prog\\CS-Labs\\BookShop\\Shop.Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Yoga12\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {
+              "D:\\My\\C#-Prog\\CS-Labs\\BookShop\\BookShop\\BookShop.csproj": {
+                "projectPath": "D:\\My\\C#-Prog\\CS-Labs\\BookShop\\BookShop\\BookShop.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "JetBrains.Annotations": {
+              "target": "Package",
+              "version": "[2020.1.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[2.2.6, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
     "D:\\My\\C#-Prog\\CS-Labs\\BookShop\\WebShopApplication\\WebShopApplication.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -20,14 +132,21 @@
           "C:\\Users\\Yoga12\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp2.1"
+          "netcoreapp2.2"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netcoreapp2.1": {
-            "projectReferences": {}
+          "netcoreapp2.2": {
+            "projectReferences": {
+              "D:\\My\\C#-Prog\\CS-Labs\\BookShop\\BookShop\\BookShop.csproj": {
+                "projectPath": "D:\\My\\C#-Prog\\CS-Labs\\BookShop\\BookShop\\BookShop.csproj"
+              },
+              "D:\\My\\C#-Prog\\CS-Labs\\BookShop\\Shop.Infrastructure\\Shop.Infrastructure.csproj": {
+                "projectPath": "D:\\My\\C#-Prog\\CS-Labs\\BookShop\\Shop.Infrastructure\\Shop.Infrastructure.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -37,23 +156,23 @@
         }
       },
       "frameworks": {
-        "netcoreapp2.1": {
+        "netcoreapp2.2": {
           "dependencies": {
             "Microsoft.AspNetCore.App": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[2.1.1, )",
+              "version": "[2.2.0, )",
               "autoReferenced": true
             },
             "Microsoft.AspNetCore.Razor.Design": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[2.1.2, )"
+              "version": "[2.2.0, )"
             },
             "Microsoft.NETCore.App": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[2.1.0, )",
+              "version": "[2.2.0, )",
               "autoReferenced": true
             }
           },

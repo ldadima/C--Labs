@@ -47,7 +47,7 @@
 
                 if (!ReduceBalance(book.CurrentPrice * 0.07))
                 {
-                    Console.WriteLine($"На книгу с ценой {book.CurrentPrice} не хватает денег");
+                    Console.WriteLine($"На книгу c id {book.Id} по цене {book.CurrentPrice * 0.07} не хватает денег");
                     continue;
                 }
                 _shop.Books.Add(book);

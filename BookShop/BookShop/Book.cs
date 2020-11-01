@@ -11,6 +11,8 @@ namespace BookShop
         public Genre BookGenre { get; }
 
         public bool Novelty { get; }
+
+        public DateTime DateDelivery { get; set; }
         
         public long ShopId { get; set; }
 

@@ -10,13 +10,13 @@
       "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
     ],
     "originalTargetFrameworks": [
-      "netcoreapp2.1"
+      "netcoreapp2.2"
     ],
     "sources": {
       "https://api.nuget.org/v3/index.json": {}
     },
     "frameworks": {
-      "netcoreapp2.1": {
+      "netcoreapp2.2": {
         "projectReferences": {
           "D:\\My\\C#-Prog\\CS-Labs\\BookShop\\BookShop\\BookShop.csproj": {
             "projectPath": "D:\\My\\C#-Prog\\CS-Labs\\BookShop\\BookShop\\BookShop.csproj"
@@ -31,7 +31,7 @@
     }
   },
   "frameworks": {
-    "netcoreapp2.1": {
+    "netcoreapp2.2": {
       "dependencies": {
         "FluentAssertions": {
           "target": "Package",
@@ -44,12 +44,16 @@
         "Microsoft.NETCore.App": {
           "suppressParent": "All",
           "target": "Package",
-          "version": "[2.1.0, )",
+          "version": "[2.2.0, )",
           "autoReferenced": true
         },
         "Moq": {
           "target": "Package",
           "version": "[4.14.6, )"
+        },
+        "NFluent": {
+          "target": "Package",
+          "version": "[2.7.0, )"
         },
         "NUnit3TestAdapter": {
           "target": "Package",
