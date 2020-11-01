@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookShopTests", "BookShopTe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebShopApplication", "WebShopApplication\WebShopApplication.csproj", "{B3059E06-6904-4B0E-9463-AB1C9712C3FF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Infrastructure", "Shop.Infrastructure\Shop.Infrastructure.csproj", "{1887BDDF-7A7B-4BCE-98BA-B6CF4647886C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{B3059E06-6904-4B0E-9463-AB1C9712C3FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3059E06-6904-4B0E-9463-AB1C9712C3FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3059E06-6904-4B0E-9463-AB1C9712C3FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1887BDDF-7A7B-4BCE-98BA-B6CF4647886C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1887BDDF-7A7B-4BCE-98BA-B6CF4647886C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1887BDDF-7A7B-4BCE-98BA-B6CF4647886C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1887BDDF-7A7B-4BCE-98BA-B6CF4647886C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

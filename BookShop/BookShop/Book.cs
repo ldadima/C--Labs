@@ -8,16 +8,13 @@ namespace BookShop
         private double Price { get; }
         
         public double CurrentPrice { get; private set; }
-        public enum Genre
-        {
-            Fantasy,
-            Adventure,
-            Encyclopedia
-        }
-
         public Genre BookGenre { get; }
 
         public bool Novelty { get; }
+        
+        public long ShopId { get; set; }
+
+        public ShopLibrary ShopLibrary { get; set; }
 
         public Book(double price, long id, Genre genre, bool novelty)
         {

@@ -12,6 +12,7 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="Book.cs" t="Include" />
         <e p="BookShop.csproj" t="IncludeRecursive" />
+        <e p="Genre.cs" t="Include" />
         <e p="MarketSystem.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
@@ -20,7 +21,6 @@
             </e>
           </e>
         </e>
-        <e p="Program.cs" t="Include" />
         <e p="Shop.cs" t="Include" />
       </e>
       <e p="BookShop.sln" t="IncludeFlat" />
@@ -39,6 +39,21 @@
         <e p="SystemTest.cs" t="Include" />
       </e>
       <e p="packages" t="ExcludeRecursive" />
+      <e p="Shop.Infrastructure" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="EntityFramework" t="Include">
+          <e p="BooksContext.cs" t="Include" />
+          <e p="Configurations" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.1" t="Include">
+              <e p="Shop.Infrastructure.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Shop.Infrastructure.csproj" t="IncludeRecursive" />
+      </e>
       <e p="WebShopApplication" t="IncludeRecursive">
         <e p="appsettings.Development.json" t="Include" />
         <e p="appsettings.json" t="Include" />
