@@ -1,6 +1,6 @@
 ﻿using BookShop;
 using JetBrains.Annotations;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;    
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Shop.Infrastructure.EntityFramework.Configurations
