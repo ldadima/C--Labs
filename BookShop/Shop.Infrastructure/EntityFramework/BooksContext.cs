@@ -7,8 +7,12 @@ namespace Shop.Infrastructure.EntityFramework
 {
     public class BooksContext: DbContext
     {
-        public const string DefaultSchemaName = "Books";
+        public const string DefaultSchemaName = "books";
 
+        public BooksContext() : base()
+        {
+            
+        }
         public BooksContext(DbContextOptions options) : base(options)
         {
         }
@@ -16,7 +20,7 @@ namespace Shop.Infrastructure.EntityFramework
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
-            modelBuilder.HasDefaultSchema(DefaultSchemaName); //problem
+            modelBuilder.HasDefaultSchema(DefaultSchemaName);
         }
 
         public async Task<List<Book>> GetBooks()
