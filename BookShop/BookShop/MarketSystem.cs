@@ -69,17 +69,15 @@
             {
                 switch (book.BookGenre)
                 {
-                    case Genre.Adventure:
+                    case "Adventure":
                         book.ChangePrice(ShopLibrary.AdventureSale);
                         break;
-                    case Genre.Fantasy:
+                    case "Fantasy":
                         book.ChangePrice(ShopLibrary.FantasySale);
                         break;
-                    case Genre.Encyclopedia:
+                    case "Encyclopedia":
                         book.ChangePrice(ShopLibrary.EncyclopediaSale);
                         break;
-                    default:
-                        throw new ArgumentException("Error with Genre of book");
                 }
             }            Console.WriteLine("Старт акции");
         }
@@ -114,7 +112,7 @@
         
         private bool ALotOfOldBooks()
         {
-            double count = _shop.Books.FindAll(book => book.Novelty==false).Count;
+            double count = _shop.Books.FindAll(book => book.IsNew==false).Count;
             return count / _shop.Books.Count >= ShopLibrary.OldBooks;
         }
     }

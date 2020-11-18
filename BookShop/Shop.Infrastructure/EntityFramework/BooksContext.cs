@@ -7,12 +7,8 @@ namespace Shop.Infrastructure.EntityFramework
 {
     public class BooksContext: DbContext
     {
-        public const string DefaultSchemaName = "books";
+        public const string DefaultSchemaName = "public";
 
-        public BooksContext() : base()
-        {
-            
-        }
         public BooksContext(DbContextOptions options) : base(options)
         {
         }

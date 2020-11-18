@@ -11,7 +11,7 @@
 
         public BooksContext GetContext()
         {
-            return new BooksContext(BooksContextContextTimeFactory.GetSqlServerOptions(_connectionString));
+            return new BooksContext(BooksContextTimeFactory.GetNpgsqlOptions(_connectionString));
         }
     }
 }

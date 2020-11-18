@@ -10,13 +10,13 @@
       "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
     ],
     "originalTargetFrameworks": [
-      "netcoreapp3.0"
+      "netcoreapp3.1"
     ],
     "sources": {
       "https://api.nuget.org/v3/index.json": {}
     },
     "frameworks": {
-      "netcoreapp3.0": {
+      "netcoreapp3.1": {
         "projectReferences": {
           "D:\\My\\C#-Prog\\CS-Labs\\BookShop\\BookShop\\BookShop.csproj": {
             "projectPath": "D:\\My\\C#-Prog\\CS-Labs\\BookShop\\BookShop\\BookShop.csproj"
@@ -31,7 +31,7 @@
     }
   },
   "frameworks": {
-    "netcoreapp3.0": {
+    "netcoreapp3.1": {
       "dependencies": {
         "FluentAssertions": {
           "target": "Package",
@@ -73,7 +73,7 @@
           "privateAssets": "all"
         }
       },
-      "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.103\\RuntimeIdentifierGraph.json"
+      "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.404\\RuntimeIdentifierGraph.json"
     }
   }
 }

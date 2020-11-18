@@ -4,27 +4,35 @@ namespace BookShop
 {
     public class Book
     {    
-        public long Id { get;  }
-        private double Price { get; }
+        public long Id { get; set; }
+        
+        public string Title { get; set; }
+        public double Price { get; set; }
         
         public double CurrentPrice { get; private set; }
-        public Genre BookGenre { get; }
+        public string BookGenre { get; set; }
 
-        public bool Novelty { get; }
+        public bool IsNew { get; set; }
 
         public DateTime DateDelivery { get; set; }
         
-        public long ShopId { get; set; }
+        // public long ShopId { get; set; }
 
-        public ShopLibrary ShopLibrary { get; set; }
+        // public ShopLibrary ShopLibrary { get; set; }
 
-        public Book(double price, long id, Genre genre, bool novelty)
+        public Book()
+        {
+            
+        }
+
+        public Book(long id, string genre, bool isNew, double price, DateTime dateDelivery)
         {
             Id = id;
             BookGenre = genre;
-            this.Novelty = novelty;
+            IsNew = isNew;
             Price = price;
             CurrentPrice = Price;
+            DateDelivery = dateDelivery;
         }
 
         public void ChangePrice(double percent)

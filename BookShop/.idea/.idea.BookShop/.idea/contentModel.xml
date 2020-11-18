@@ -13,11 +13,10 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="Book.cs" t="Include" />
         <e p="BookShop.csproj" t="IncludeRecursive" />
-        <e p="Genre.cs" t="Include" />
         <e p="MarketSystem.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
-            <e p="netcoreapp3.0" t="Include">
+            <e p="netcoreapp3.1" t="Include">
               <e p="BookShop.AssemblyInfo.cs" t="Include" />
             </e>
           </e>
@@ -30,13 +29,12 @@
         <e p="BookShopTests.csproj" t="IncludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
-            <e p="netcoreapp3.0" t="Include">
+            <e p="netcoreapp3.1" t="Include">
               <e p="BookShopTests.AssemblyInfo.cs" t="Include" />
               <e p="BookShopTests.Program.cs" t="Include" />
             </e>
           </e>
         </e>
-        <e p="ShopTest.cs" t="Include" />
         <e p="SystemTest.cs" t="Include" />
       </e>
       <e p="packages" t="ExcludeRecursive" />
@@ -44,15 +42,22 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="EntityFramework" t="Include">
           <e p="BooksContext.cs" t="Include" />
-          <e p="BooksContextContextTimeFactory.cs" t="Include" />
           <e p="BooksContextDbContextFactory.cs" t="Include" />
+          <e p="BooksContextTimeFactory.cs" t="Include" />
           <e p="Configurations" t="Include">
             <e p="BookConfiguration.cs" t="Include" />
           </e>
         </e>
+        <e p="Migrations" t="Include">
+          <e p="20201118210955_AddBook.cs" t="Include" />
+          <e p="20201118210955_AddBook.Designer.cs" t="Include" />
+          <e p="20201118211210_InitialCreate.cs" t="Include" />
+          <e p="20201118211210_InitialCreate.Designer.cs" t="Include" />
+          <e p="BooksContextModelSnapshot.cs" t="Include" />
+        </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
-            <e p="netcoreapp3.0" t="Include">
+            <e p="netcoreapp3.1" t="Include">
               <e p="Shop.Infrastructure.AssemblyInfo.cs" t="Include" />
             </e>
           </e>
@@ -69,7 +74,7 @@
         </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
-            <e p="netcoreapp3.0" t="Include">
+            <e p="netcoreapp3.1" t="Include">
               <e p="WebShopApplication.AssemblyInfo.cs" t="Include" />
             </e>
           </e>

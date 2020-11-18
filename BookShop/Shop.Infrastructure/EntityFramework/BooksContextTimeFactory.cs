@@ -1,14 +1,15 @@
 ﻿using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 
 namespace Shop.Infrastructure.EntityFramework
 {
     [UsedImplicitly]
-    public class BooksContextContextTimeFactory
+    public class BooksContextTimeFactory: IDesignTimeDbContextFactory<BooksContext>
     {
         private const string DefaultConnectionString =
-            "Data Source=127.0.0.1;Initial Catalog=book_shop;User Id=lda-dima; Password=Xer$##aeSd2ed32$e4;";
-        public static DbContextOptions<BooksContext> GetSqlServerOptions([CanBeNull]string connectionString)
+            "Host=127.0.0.1;Username=lda-dima;Password=XeraeSd2ed32e4;Database=book_shop;";
+        public static DbContextOptions<BooksContext> GetNpgsqlOptions([CanBeNull]string connectionString)
         {
             return new DbContextOptionsBuilder<BooksContext>()
                 .UseNpgsql(connectionString ?? DefaultConnectionString, x =>
@@ -19,7 +20,7 @@ namespace Shop.Infrastructure.EntityFramework
         }
         public BooksContext CreateDbContext(string[] args)
         {
-            return new BooksContext(GetSqlServerOptions(null));
+            return new BooksContext(GetNpgsqlOptions(null));
         }
     }
 }
