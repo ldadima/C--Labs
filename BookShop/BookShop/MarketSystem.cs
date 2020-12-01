@@ -22,11 +22,16 @@
             }
             AddBalance(find.CurrentPrice);
             _shop.Books.Remove(find);
-            if (FewBooksLeft() || ALotOfOldBooks())
+            if (IsFewBooksLeft() || HasManyOldBooks())
             {
                 DeliveryRequest();
             }
             Console.WriteLine($"Книга с id {id} продана");
+        }
+
+        public bool IsNeedSomeBooks()
+        {
+            return IsFewBooksLeft() || HasManyOldBooks();
         }
 
         public void BookReception(IEnumerable<Book> books)
@@ -105,12 +110,12 @@
 
         }
 
-        private bool FewBooksLeft()
+        private bool IsFewBooksLeft()
         {
             return _shop.Books.Count / (double) _shop.Capacity <= ShopLibrary.PercentLeft;
         }
         
-        private bool ALotOfOldBooks()
+        private bool HasManyOldBooks()
         {
             double count = _shop.Books.FindAll(book => book.IsNew==false).Count;
             return count / _shop.Books.Count >= ShopLibrary.OldBooks;

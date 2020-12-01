@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using BookShop;
-using Shop.Infrastructure.EntityFramework;
 using Microsoft.AspNetCore.Mvc;
+using Shop.Infrastructure.EntityFramework;
 
 namespace WebShopApplication.Controllers
 {
@@ -16,6 +16,7 @@ namespace WebShopApplication.Controllers
         {
             _dbContextFactory = dbContextFactory;
         }
+        
         [HttpGet]
         public async Task<List<Book>> GetBooks()
         {
@@ -25,6 +26,7 @@ namespace WebShopApplication.Controllers
             }
         }
 
+        [Route("add")]
         [HttpPost]
         public async Task AddBook([FromBody] Book book)
         {
