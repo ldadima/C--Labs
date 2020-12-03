@@ -14,6 +14,9 @@ namespace Shop.Infrastructure.EntityFramework.Configurations
             builder.ToTable(nameof(Book), BooksContext.DefaultSchemaName);
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
+
+#warning эти свойства тут можно было не перечислять; тут нужно настраивать те свойства, к которым есть какие-то ограничения или ещё что-то.
+            #warning например, если какое-то поле обязательное, или если какому-то полю нужно задать макс. длину, в таком духе
             builder.Property(x => x.Title);
             builder.Property(x => x.BookGenre);
             builder.Property(x => x.IsNew);

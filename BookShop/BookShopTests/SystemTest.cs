@@ -5,11 +5,13 @@ using System.Text;
 using BookShop;
 using FluentAssertions;
 using NUnit.Framework;
+#warning все неиспользуемые using'и надо убирать, ни к чему загрязнять код, тем более даже решарпер их подсвечитвает 
 using Moq;
 using NFluent;
 
 namespace ShopTests
 {
+    #warning название класса очень странное, не соответствует действительности :) 
     public class SystemTest
     {
         [Test]

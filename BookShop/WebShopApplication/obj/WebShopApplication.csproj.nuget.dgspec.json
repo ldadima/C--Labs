@@ -1,29 +1,34 @@
 {
   "format": 1,
   "restore": {
-    "D:\\My\\C#-Prog\\CS-Labs\\BookShop\\WebShopApplication\\WebShopApplication.csproj": {}
+    "C:\\Work\\CSCourse\\CS-Labs\\BookShop\\WebShopApplication\\WebShopApplication.csproj": {}
   },
   "projects": {
-    "D:\\My\\C#-Prog\\CS-Labs\\BookShop\\BookShop\\BookShop.csproj": {
+    "C:\\Work\\CSCourse\\CS-Labs\\BookShop\\BookShop\\BookShop.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\My\\C#-Prog\\CS-Labs\\BookShop\\BookShop\\BookShop.csproj",
+        "projectUniqueName": "C:\\Work\\CSCourse\\CS-Labs\\BookShop\\BookShop\\BookShop.csproj",
         "projectName": "BookShop",
-        "projectPath": "D:\\My\\C#-Prog\\CS-Labs\\BookShop\\BookShop\\BookShop.csproj",
-        "packagesPath": "C:\\Users\\Yoga12\\.nuget\\packages\\",
-        "outputPath": "D:\\My\\C#-Prog\\CS-Labs\\BookShop\\BookShop\\obj\\",
+        "projectPath": "C:\\Work\\CSCourse\\CS-Labs\\BookShop\\BookShop\\BookShop.csproj",
+        "packagesPath": "C:\\Users\\a.sergeev\\.nuget\\packages\\",
+        "outputPath": "C:\\Work\\CSCourse\\CS-Labs\\BookShop\\BookShop\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Yoga12\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\a.sergeev\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {}
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Work\\NSU_CS_Course\\LocalNuget": {},
+          "http://etr-nuget-01/gallery/api/v2": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget-02.eastbanctech.ru/api/v2": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
@@ -53,36 +58,41 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.404\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\My\\C#-Prog\\CS-Labs\\BookShop\\Shop.Infrastructure\\Shop.Infrastructure.csproj": {
+    "C:\\Work\\CSCourse\\CS-Labs\\BookShop\\Shop.Infrastructure\\Shop.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\My\\C#-Prog\\CS-Labs\\BookShop\\Shop.Infrastructure\\Shop.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Work\\CSCourse\\CS-Labs\\BookShop\\Shop.Infrastructure\\Shop.Infrastructure.csproj",
         "projectName": "Shop.Infrastructure",
-        "projectPath": "D:\\My\\C#-Prog\\CS-Labs\\BookShop\\Shop.Infrastructure\\Shop.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\Yoga12\\.nuget\\packages\\",
-        "outputPath": "D:\\My\\C#-Prog\\CS-Labs\\BookShop\\Shop.Infrastructure\\obj\\",
+        "projectPath": "C:\\Work\\CSCourse\\CS-Labs\\BookShop\\Shop.Infrastructure\\Shop.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\a.sergeev\\.nuget\\packages\\",
+        "outputPath": "C:\\Work\\CSCourse\\CS-Labs\\BookShop\\Shop.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Yoga12\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\a.sergeev\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {}
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Work\\NSU_CS_Course\\LocalNuget": {},
+          "http://etr-nuget-01/gallery/api/v2": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget-02.eastbanctech.ru/api/v2": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "D:\\My\\C#-Prog\\CS-Labs\\BookShop\\BookShop\\BookShop.csproj": {
-                "projectPath": "D:\\My\\C#-Prog\\CS-Labs\\BookShop\\BookShop\\BookShop.csproj"
+              "C:\\Work\\CSCourse\\CS-Labs\\BookShop\\BookShop\\BookShop.csproj": {
+                "projectPath": "C:\\Work\\CSCourse\\CS-Labs\\BookShop\\BookShop\\BookShop.csproj"
               }
             }
           }
@@ -154,39 +164,44 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.404\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\My\\C#-Prog\\CS-Labs\\BookShop\\WebShopApplication\\WebShopApplication.csproj": {
+    "C:\\Work\\CSCourse\\CS-Labs\\BookShop\\WebShopApplication\\WebShopApplication.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\My\\C#-Prog\\CS-Labs\\BookShop\\WebShopApplication\\WebShopApplication.csproj",
+        "projectUniqueName": "C:\\Work\\CSCourse\\CS-Labs\\BookShop\\WebShopApplication\\WebShopApplication.csproj",
         "projectName": "WebShopApplication",
-        "projectPath": "D:\\My\\C#-Prog\\CS-Labs\\BookShop\\WebShopApplication\\WebShopApplication.csproj",
-        "packagesPath": "C:\\Users\\Yoga12\\.nuget\\packages\\",
-        "outputPath": "D:\\My\\C#-Prog\\CS-Labs\\BookShop\\WebShopApplication\\obj\\",
+        "projectPath": "C:\\Work\\CSCourse\\CS-Labs\\BookShop\\WebShopApplication\\WebShopApplication.csproj",
+        "packagesPath": "C:\\Users\\a.sergeev\\.nuget\\packages\\",
+        "outputPath": "C:\\Work\\CSCourse\\CS-Labs\\BookShop\\WebShopApplication\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Yoga12\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\a.sergeev\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {}
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Work\\NSU_CS_Course\\LocalNuget": {},
+          "http://etr-nuget-01/gallery/api/v2": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget-02.eastbanctech.ru/api/v2": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "D:\\My\\C#-Prog\\CS-Labs\\BookShop\\BookShop\\BookShop.csproj": {
-                "projectPath": "D:\\My\\C#-Prog\\CS-Labs\\BookShop\\BookShop\\BookShop.csproj"
+              "C:\\Work\\CSCourse\\CS-Labs\\BookShop\\BookShop\\BookShop.csproj": {
+                "projectPath": "C:\\Work\\CSCourse\\CS-Labs\\BookShop\\BookShop\\BookShop.csproj"
               },
-              "D:\\My\\C#-Prog\\CS-Labs\\BookShop\\Shop.Infrastructure\\Shop.Infrastructure.csproj": {
-                "projectPath": "D:\\My\\C#-Prog\\CS-Labs\\BookShop\\Shop.Infrastructure\\Shop.Infrastructure.csproj"
+              "C:\\Work\\CSCourse\\CS-Labs\\BookShop\\Shop.Infrastructure\\Shop.Infrastructure.csproj": {
+                "projectPath": "C:\\Work\\CSCourse\\CS-Labs\\BookShop\\Shop.Infrastructure\\Shop.Infrastructure.csproj"
               }
             }
           }
@@ -228,7 +243,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.404\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

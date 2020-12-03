@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebShopApplication.Controllers
 {
+    #warning целый контроллер ненужного кода
     [Route("api/values")]
     [ApiController]
     public class ValuesController : ControllerBase

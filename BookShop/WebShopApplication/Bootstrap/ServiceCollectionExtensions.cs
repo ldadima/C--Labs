@@ -9,6 +9,7 @@ namespace WebShopApplication.Bootstrap
 {
     internal static class ServiceCollectionExtensions
     {
+        #warning этот метод у тебя нигде не используется, значит, джоб у тебя не может работать
         public static IServiceCollection AddBackgroundJobs(this IServiceCollection services)
         {
             services.AddSingleton<IJobFactory, InjectableJobFactory>();

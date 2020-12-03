@@ -9,6 +9,8 @@ namespace WebShopApplication.Services
     {
         private readonly MarketSystem _marketSystem;
         private readonly HttpClient _httpClient;
+        
+        #warning можно превратить в константу, как подсказывает решарпер
         private readonly string _url = "https://getbooksrestapi.azurewebsites.net/api/books";
 
         public ServiceProxy(HttpClient httpClient, MarketSystem marketSystem)
@@ -23,6 +25,9 @@ namespace WebShopApplication.Services
             {
                 return;
             }
+            #warning _url + 10 и получится https://getbooksrestapi.azurewebsites.net/api/books10. 
+            #warning во-первых, это неверный url, по такому запросу ничего не придёт, ты проверял что этот код работает? 
+            #warning во-вторых, лучше использовать интерполяцию
             var response = await _httpClient.GetAsync(_url + 10);
             var books = JsonConvert.DeserializeObject<List<Book>>(response.Content.ToString());
             _marketSystem.BookReception(books);

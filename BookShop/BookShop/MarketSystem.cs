@@ -62,6 +62,7 @@
 
         }
 
+        #warning Method can be made static https://www.jetbrains.com/help/rider/MemberCanBeMadeStatic.Local.html
         private void DeliveryRequest()
         {
             // something connect with BookDeliver
@@ -84,6 +85,7 @@
                         book.ChangePrice(ShopLibrary.EncyclopediaSale);
                         break;
                 }
+                #warning код неотформатирован
             }            Console.WriteLine("Старт акции");
         }
         
@@ -104,6 +106,8 @@
 
         private bool ReduceBalance(double reduce)
         {
+            #warning вполне принято не заключать код после if'a в фигурные скобки, если там только одно выражение идёт
+            #warning но лично мне кажется, что так делать неплохо, читаемость лучше что ли. 
             if (reduce > _shop.Balance) return false;
             _shop.Balance -= reduce;
             return true;

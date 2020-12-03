@@ -4,6 +4,7 @@ namespace BookShop
 {
     public class ShopLibrary
     {
+        #warning неиспользуемое поле
         public long Id { get; set; }
         public readonly int Capacity;
         public double Balance { get; set; }
