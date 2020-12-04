@@ -26,7 +26,6 @@ namespace WebShopApplication.Controllers
             }
         }
 
-        [Route("add")]
         [HttpPost]
         public async Task AddBook([FromBody] Book book)
         {

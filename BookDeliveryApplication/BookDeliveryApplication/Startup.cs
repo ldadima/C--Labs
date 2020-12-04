@@ -1,16 +1,13 @@
-﻿using System.Net.Http;
-using ApplicationServises;
-using BookShop;
+using System.Net.Http;
+using BookDeliveryApplication.Bootstrap;
+using BookDeliveryApplication.Services;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Shop.Infrastructure.EntityFramework;
-using WebShopApplication.Bootstrap;
-using WebShopApplication.Services;
 
-namespace WebShopApplication
+namespace BookDeliveryApplication
 {
     public class Startup
     {
@@ -24,18 +21,14 @@ namespace WebShopApplication
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc(options => options.EnableEndpointRouting = false).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
-            services.AddSingleton(provider =>
-                new BooksContextDbContextFactory(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddSingleton<HttpClient>();
-            services.AddSingleton<MarketSystem>();
             services.AddSingleton<IServiceProxy, ServiceProxy>();
+            services.AddSingleton<HttpClient>();
             services.AddControllers();
             services.AddBackgroundJobs();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -49,8 +42,8 @@ namespace WebShopApplication
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
-
-            app.UseMvc();
         }
+        
+        
     }
 }

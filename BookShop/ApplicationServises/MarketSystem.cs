@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using BookShop;
 
-namespace BookShop
+namespace ApplicationServises
 {
     public class MarketSystem
     {

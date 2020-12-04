@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
+using BookDeliveryApplication.Services;
 using JetBrains.Annotations;
 using Quartz;
-using WebShopApplication.Services;
 
-namespace WebShopApplication.Jobs
+namespace BookDeliveryApplication.Jobs
 {
     [UsedImplicitly]
     [DisallowConcurrentExecution]
