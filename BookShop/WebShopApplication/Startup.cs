@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Shop.Infrastructure.EntityFramework;
+using WebShopApplication.Bootstrap;
 using WebShopApplication.Services;
 
 namespace WebShopApplication
@@ -28,7 +29,8 @@ namespace WebShopApplication
             services.AddSingleton<HttpClient>();
             services.AddSingleton<MarketSystem>();
             services.AddSingleton<IServiceProxy, ServiceProxy>();
-            
+            services.AddControllers();
+            services.AddBackgroundJobs();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

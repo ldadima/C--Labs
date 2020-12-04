@@ -1,7 +1,6 @@
-﻿using System;
-using BookShop;
+﻿using BookShop;
 using JetBrains.Annotations;
-using Microsoft.EntityFrameworkCore;    
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Shop.Infrastructure.EntityFramework.Configurations
@@ -14,11 +13,11 @@ namespace Shop.Infrastructure.EntityFramework.Configurations
             builder.ToTable(nameof(Book), BooksContext.DefaultSchemaName);
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
-            builder.Property(x => x.Title);
-            builder.Property(x => x.BookGenre);
-            builder.Property(x => x.IsNew);
-            builder.Property(x => x.Price);
-            builder.Property(x => x.DateDelivery);
+            builder.Property(x => x.Title).IsRequired().HasMaxLength(256);
+            builder.Property(x => x.BookGenre).IsRequired().HasMaxLength(100);
+            builder.Property(x => x.IsNew).IsRequired();
+            builder.Property(x => x.Price).IsRequired();
+            builder.Property(x => x.DateDelivery).IsRequired();
         }
     }
 }

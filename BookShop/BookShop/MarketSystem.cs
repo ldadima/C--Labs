@@ -1,8 +1,8 @@
-﻿﻿using System;
- using System.Collections.Generic;
- using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
- namespace BookShop
+namespace BookShop
 {
     public class MarketSystem
     {
@@ -20,12 +20,14 @@
             {
                 throw new ArgumentException("Book not Found");
             }
+
             AddBalance(find.CurrentPrice);
             _shop.Books.Remove(find);
-            if (IsFewBooksLeft() || HasManyOldBooks())
+            if (IsNeedSomeBooks())
             {
                 DeliveryRequest();
             }
+
             Console.WriteLine($"Книга с id {id} продана");
         }
 
@@ -55,19 +57,20 @@
                     Console.WriteLine($"На книгу c id {book.Id} по цене {book.CurrentPrice * 0.07} не хватает денег");
                     continue;
                 }
+
                 _shop.Books.Add(book);
                 count++;
             }
+            
             Console.WriteLine($"{count} книг принято");
-
         }
 
-        private void DeliveryRequest()
+        private static void DeliveryRequest()
         {
             // something connect with BookDeliver
             Console.WriteLine("Заказ поставки системой");
         }
-        
+
         public void BeginSale()
         {
             foreach (var book in _shop.Books)
@@ -84,19 +87,22 @@
                         book.ChangePrice(ShopLibrary.EncyclopediaSale);
                         break;
                 }
-            }            Console.WriteLine("Старт акции");
+            }
+            
+            Console.WriteLine("Старт акции");
         }
-        
+
         public void EndSale()
         {
             foreach (var book in _shop.Books)
             {
                 book.ReturnPrice();
             }
+
             Console.WriteLine("Конец акции");
         }
-        
-        
+
+
         private void AddBalance(double plus)
         {
             _shop.Balance += plus;
@@ -104,20 +110,22 @@
 
         private bool ReduceBalance(double reduce)
         {
-            if (reduce > _shop.Balance) return false;
+            if (reduce > _shop.Balance)
+            {
+                return false;
+            }
             _shop.Balance -= reduce;
             return true;
-
         }
 
         private bool IsFewBooksLeft()
         {
             return _shop.Books.Count / (double) _shop.Capacity <= ShopLibrary.PercentLeft;
         }
-        
+
         private bool HasManyOldBooks()
         {
-            double count = _shop.Books.FindAll(book => book.IsNew==false).Count;
+            double count = _shop.Books.FindAll(book => book.IsNew == false).Count;
             return count / _shop.Books.Count >= ShopLibrary.OldBooks;
         }
     }

@@ -4,13 +4,12 @@ using System.IO;
 using System.Text;
 using BookShop;
 using FluentAssertions;
-using NUnit.Framework;
-using Moq;
 using NFluent;
+using NUnit.Framework;
 
 namespace ShopTests
 {
-    public class SystemTest
+    public class MarketSystemTest
     {
         [Test]
         public void SaleBookTest()

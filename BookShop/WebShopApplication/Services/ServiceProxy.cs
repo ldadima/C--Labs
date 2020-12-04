@@ -9,7 +9,7 @@ namespace WebShopApplication.Services
     {
         private readonly MarketSystem _marketSystem;
         private readonly HttpClient _httpClient;
-        private readonly string _url = "https://getbooksrestapi.azurewebsites.net/api/books";
+        private const string Url = "https://getbooksrestapi.azurewebsites.net/api/books";
 
         public ServiceProxy(HttpClient httpClient, MarketSystem marketSystem)
         {
@@ -23,7 +23,7 @@ namespace WebShopApplication.Services
             {
                 return;
             }
-            var response = await _httpClient.GetAsync(_url + 10);
+            var response = await _httpClient.GetAsync($"{Url}/10");
             var books = JsonConvert.DeserializeObject<List<Book>>(response.Content.ToString());
             _marketSystem.BookReception(books);
         }
