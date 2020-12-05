@@ -2,19 +2,19 @@
 
 namespace BookDeliveryApplication.Services
 {
-    public class ServiceProxy : IServiceProxy
+    public class ServiceBookProxy : IServiceProxy
     {
         private readonly HttpClient _httpClient;
         private const string Url = "https://getbooksrestapi.azurewebsites.net/api/books";
 
-        public ServiceProxy(HttpClient httpClient)
+        public ServiceBookProxy(HttpClient httpClient)
         {
             _httpClient = httpClient;
         }
 
-        public async void GetAndSaveBooks()
+        public async void GetAndSaveBooks(int bookCount)
         {
-            var response = await _httpClient.GetAsync($"{Url}/10");
+            var response = await _httpClient.GetAsync($"{Url}/{bookCount}");
         }
     }
 }

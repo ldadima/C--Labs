@@ -2,6 +2,6 @@
 {
     public interface IServiceProxy
     {
-        void GetAndSaveBooks();
+        void GetAndSaveBooks(int bookCount);
     }
 }

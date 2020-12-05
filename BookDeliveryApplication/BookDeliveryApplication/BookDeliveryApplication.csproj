@@ -2,12 +2,15 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
+        <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="JetBrains.Annotations" Version="2020.3.0" />
-      <PackageReference Include="Quartz" Version="3.2.3" />
+        <PackageReference Include="ContractRabbit" Version="1.0.0" />
+        <PackageReference Include="JetBrains.Annotations" Version="2020.3.0" />
+        <PackageReference Include="MassTransit.AspNetCore" Version="5.5.6" />
+        <PackageReference Include="MassTransit.RabbitMQ" Version="5.5.6" />
+        <PackageReference Include="Microsoft.AspNetCore.App" Version="2.2.8" />
     </ItemGroup>
-
 
 </Project>
