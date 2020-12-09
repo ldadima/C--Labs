@@ -41,6 +41,9 @@ namespace WebShopApplication
             services.AddSingleton<BookRequestProducer>();
             services.AddMassTransit(isp =>
                 {
+#warning на этой строке полетит exception, потому что у тебя в конфиге нет секции MassTransit
+#warning значит и данные для подключения к RMQ брать приложению неоткуда
+#warning это ещё раз наталкивает на мысль, что ты не запускал и не проверял приложение
                     var hostConfig = new MassTransitConfiguration();
                     Configuration.GetSection("MassTransit").Bind(hostConfig);
 

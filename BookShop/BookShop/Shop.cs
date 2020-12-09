@@ -2,6 +2,7 @@
 
 namespace BookShop
 {
+    #warning название класса должно совпадать с название файла
     public class ShopLibrary
     {
         public readonly int Capacity;

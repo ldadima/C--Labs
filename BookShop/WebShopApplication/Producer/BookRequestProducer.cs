@@ -15,6 +15,7 @@ namespace WebShopApplication.Producer
             _configuration = configuration;
         }
 
+        #warning неиспользуемый метод, некорректное название
         public async Task SentPaymentReceivedEvent(int bookCount)
         {
             var message = new BookRequest(bookCount);

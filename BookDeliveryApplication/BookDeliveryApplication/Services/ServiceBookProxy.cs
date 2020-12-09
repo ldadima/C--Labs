@@ -12,6 +12,7 @@ namespace BookDeliveryApplication.Services
             _httpClient = httpClient;
         }
 
+        #warning ну и тут этот метод нигде не используется и вообще не дописан
         public async void GetAndSaveBooks(int bookCount)
         {
             var response = await _httpClient.GetAsync($"{Url}/{bookCount}");
