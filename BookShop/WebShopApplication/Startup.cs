@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Net.Http;
-using ApplicationServises;
+using ApplicationServices;
 using BookShop;
 using MassTransit;
 using MassTransit.AspNetCoreIntegration;
@@ -32,7 +32,7 @@ namespace WebShopApplication
             services.AddMvc(options => options.EnableEndpointRouting = false)
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddSingleton(provider =>
-                new BooksContextDbContextFactory(Configuration.GetConnectionString("DefaultConnection")));
+                new ShopContextDbContextFactory(Configuration.GetConnectionString("DefaultConnection")));
             services.AddSingleton<HttpClient>();
             services.AddSingleton<MarketSystem>();
             services.AddSingleton<IServiceProxy, ServiceProxy>();
@@ -41,9 +41,6 @@ namespace WebShopApplication
             services.AddSingleton<BookRequestProducer>();
             services.AddMassTransit(isp =>
                 {
-#warning на этой строке полетит exception, потому что у тебя в конфиге нет секции MassTransit
-#warning значит и данные для подключения к RMQ брать приложению неоткуда
-#warning это ещё раз наталкивает на мысль, что ты не запускал и не проверял приложение
                     var hostConfig = new MassTransitConfiguration();
                     Configuration.GetSection("MassTransit").Bind(hostConfig);
 

@@ -8,7 +8,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebShopApplication", "WebSh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Infrastructure", "Shop.Infrastructure\Shop.Infrastructure.csproj", "{1887BDDF-7A7B-4BCE-98BA-B6CF4647886C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationServises", "ApplicationServises\ApplicationServises.csproj", "{B80F4E08-20A1-4F24-AC6B-3E3932D69987}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationServices", "ApplicationServices\ApplicationServices.csproj", "{B80F4E08-20A1-4F24-AC6B-3E3932D69987}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

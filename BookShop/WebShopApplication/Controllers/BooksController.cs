@@ -10,28 +10,28 @@ namespace WebShopApplication.Controllers
     [ApiController]
     public class BooksController : ControllerBase
     {
-        private readonly BooksContextDbContextFactory _dbContextFactory;
+        private readonly ShopContextDbContextFactory _dbContextFactory;
 
-        public BooksController(BooksContextDbContextFactory dbContextFactory)
+        public BooksController(ShopContextDbContextFactory dbContextFactory)
         {
             _dbContextFactory = dbContextFactory;
         }
         
         [HttpGet]
-        public async Task<List<Book>> GetBooks()
+        public async Task<List<ShopLibrary>> GetBooks()
         {
             using (var context = _dbContextFactory.GetContext())
             {
-                return await context.GetBooks();
+                return await context.GetShopLibrary();
             }
         }
 
         [HttpPost]
-        public async Task AddBook([FromBody] Book book)
+        public async Task AddBook([FromBody] ShopLibrary shop)
         {
             using (var context = _dbContextFactory.GetContext())
             {
-                context.AddBook(book);
+                context.AddShopLibrary(shop);
                 await context.SaveChangesAsync();
             }
         }

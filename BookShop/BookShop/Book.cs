@@ -17,6 +17,9 @@ namespace BookShop
         public bool IsNew { get; private set; }
 
         public DateTime DateDelivery { get; private set; }
+        
+        public long ShopId { get; private set; }
+        public ShopLibrary ShopLibrary { get; private set; }
 
         private Book()
         {

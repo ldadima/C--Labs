@@ -9,9 +9,9 @@ using Shop.Infrastructure.EntityFramework;
 
 namespace Shop.Infrastructure.Migrations
 {
-    [DbContext(typeof(BooksContext))]
-    [Migration("20201118211210_InitialCreate")]
-    partial class InitialCreate
+    [DbContext(typeof(ShopContext))]
+    [Migration("20201210145732_AddShopLibrary")]
+    partial class AddShopLibrary
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,7 +30,9 @@ namespace Shop.Infrastructure.Migrations
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("BookGenre")
-                        .HasColumnType("text");
+                        .IsRequired()
+                        .HasColumnType("character varying(100)")
+                        .HasMaxLength(100);
 
                     b.Property<double>("CurrentPrice")
                         .HasColumnType("double precision");
@@ -44,12 +46,43 @@ namespace Shop.Infrastructure.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("double precision");
 
+                    b.Property<long>("ShopId")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("Title")
-                        .HasColumnType("text");
+                        .IsRequired()
+                        .HasColumnType("character varying(256)")
+                        .HasMaxLength(256);
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ShopId");
+
                     b.ToTable("Book","public");
+                });
+
+            modelBuilder.Entity("BookShop.ShopLibrary", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<double>("Balance")
+                        .HasColumnType("double precision");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ShopLibrary","public");
+                });
+
+            modelBuilder.Entity("BookShop.Book", b =>
+                {
+                    b.HasOne("BookShop.ShopLibrary", "ShopLibrary")
+                        .WithMany("Books")
+                        .HasForeignKey("ShopId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

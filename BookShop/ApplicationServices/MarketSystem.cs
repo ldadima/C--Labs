@@ -3,27 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using BookShop;
 
-namespace ApplicationServises
+namespace ApplicationServices
 {
     public class MarketSystem
     {
-        private readonly ShopLibrary _shop;
+        private readonly ShopLibrary _shopLibrary;
 
-        public MarketSystem(ShopLibrary shop)
+        public MarketSystem(ShopLibrary shopLibrary)
         {
-            _shop = shop;
+            _shopLibrary = shopLibrary;
         }
 
         public void SaleBook(long id)
         {
-            var find = _shop.Books.FirstOrDefault(book => book.Id == id);
+            var find = _shopLibrary.Books.FirstOrDefault(book => book.Id == id);
             if (find == null)
             {
                 throw new ArgumentException("Book not Found");
             }
 
             AddBalance(find.CurrentPrice);
-            _shop.Books.Remove(find);
+            _shopLibrary.Books.Remove(find);
             if (IsNeedSomeBooks())
             {
                 DeliveryRequest();
@@ -42,12 +42,12 @@ namespace ApplicationServises
             var count = 0;
             foreach (var book in books)
             {
-                if (_shop.Capacity == _shop.Books.Count)
+                if (_shopLibrary.Capacity == _shopLibrary.Books.Count)
                 {
                     throw new OutOfMemoryException("Storage of library is full");
                 }
 
-                if (_shop.Books.FirstOrDefault(bookL => bookL.Id == book.Id) != null)
+                if (_shopLibrary.Books.FirstOrDefault(bookL => bookL.Id == book.Id) != null)
                 {
                     Console.WriteLine($"Книга с id {book.Id} уже есть");
                     continue;
@@ -59,7 +59,7 @@ namespace ApplicationServises
                     continue;
                 }
 
-                _shop.Books.Add(book);
+                _shopLibrary.Books.Add(book);
                 count++;
             }
             
@@ -74,7 +74,7 @@ namespace ApplicationServises
 
         public void BeginSale()
         {
-            foreach (var book in _shop.Books)
+            foreach (var book in _shopLibrary.Books)
             {
                 switch (book.BookGenre)
                 {
@@ -95,7 +95,7 @@ namespace ApplicationServises
 
         public void EndSale()
         {
-            foreach (var book in _shop.Books)
+            foreach (var book in _shopLibrary.Books)
             {
                 book.ReturnPrice();
             }
@@ -106,28 +106,28 @@ namespace ApplicationServises
 
         private void AddBalance(double plus)
         {
-            _shop.Balance += plus;
+            _shopLibrary.Balance += plus;
         }
 
         private bool ReduceBalance(double reduce)
         {
-            if (reduce > _shop.Balance)
+            if (reduce > _shopLibrary.Balance)
             {
                 return false;
             }
-            _shop.Balance -= reduce;
+            _shopLibrary.Balance -= reduce;
             return true;
         }
 
         private bool IsFewBooksLeft()
         {
-            return _shop.Books.Count / (double) _shop.Capacity <= ShopLibrary.PercentLeft;
+            return _shopLibrary.Books.Count / (double) _shopLibrary.Capacity <= ShopLibrary.PercentLeft;
         }
 
         private bool HasManyOldBooks()
         {
-            double count = _shop.Books.FindAll(book => book.IsNew == false).Count;
-            return count / _shop.Books.Count >= ShopLibrary.OldBooks;
+            double count = _shopLibrary.Books.FindAll(book => book.IsNew == false).Count;
+            return count / _shopLibrary.Books.Count >= ShopLibrary.OldBooks;
         }
     }
 }

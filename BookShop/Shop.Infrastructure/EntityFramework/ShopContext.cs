@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Shop.Infrastructure.EntityFramework
 {
-    public class BooksContext: DbContext
+    public class ShopContext: DbContext
     {
         public const string DefaultSchemaName = "public";
 
-        public BooksContext(DbContextOptions options) : base(options)
+        public ShopContext(DbContextOptions options) : base(options)
         {
         }
         
@@ -19,15 +19,15 @@ namespace Shop.Infrastructure.EntityFramework
             modelBuilder.HasDefaultSchema(DefaultSchemaName);
         }
 
-        public async Task<List<Book>> GetBooks()
+        public async Task<List<ShopLibrary>> GetShopLibrary()
         {
-            return await Set<Book>()
+            return await Set<ShopLibrary>()
                 .ToListAsync();
         }
 
-        public void AddBook(Book book)
+        public void AddShopLibrary(ShopLibrary shop)
         {
-            Set<Book>().Add(book);
+            Set<ShopLibrary>().Add(shop);
         }
     }
 }

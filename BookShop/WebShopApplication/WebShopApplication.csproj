@@ -9,7 +9,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="ContractRabbit" Version="1.0.0" />
         <PackageReference Include="MassTransit.AspNetCore" Version="5.5.6" />
         <PackageReference Include="MassTransit.RabbitMQ" Version="5.5.6" />
         <PackageReference Include="Microsoft.AspNetCore.App" />
@@ -18,9 +17,15 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\ApplicationServises\ApplicationServises.csproj" />
+      <ProjectReference Include="..\ApplicationServices\ApplicationServices.csproj" />
       <ProjectReference Include="..\BookShop\BookShop.csproj" />
       <ProjectReference Include="..\Shop.Infrastructure\Shop.Infrastructure.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="ContractRabbit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <HintPath>..\..\ContractRabbit\ContractRabbit\bin\Debug\netcoreapp3.1\ContractRabbit.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
 </Project>

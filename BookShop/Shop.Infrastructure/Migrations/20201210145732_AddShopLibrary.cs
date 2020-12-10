@@ -2,7 +2,7 @@
 
 namespace Shop.Infrastructure.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class AddShopLibrary : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

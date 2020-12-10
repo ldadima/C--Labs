@@ -21,7 +21,7 @@ namespace BookDeliveryApplication.Producer
         public async Task SentPaymentReceivedEvent(List<IBookResponse.Book> books)
         {
             var message = new BooksResponse();
-            
+            message.Books = books;
             var hostConfig = new MassTransitConfiguration();
             _configuration.GetSection("MassTransit").Bind(hostConfig);
             var endpoint = await _sendEndpointProvider.GetSendEndpoint(hostConfig.GetQueueAddress("books-delivery-queue"));

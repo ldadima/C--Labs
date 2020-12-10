@@ -1,21 +1,29 @@
-﻿using System.Net.Http;
+﻿using System.Collections.Generic;
+using System.Net.Http;
+using BookDeliveryApplication.Producer;
+using ContractRabbit;
+using Newtonsoft.Json;
 
 namespace BookDeliveryApplication.Services
 {
     public class ServiceBookProxy : IServiceProxy
     {
         private readonly HttpClient _httpClient;
+        private BooksReceiveProducer _booksReceiveProducer;
         private const string Url = "https://getbooksrestapi.azurewebsites.net/api/books";
 
-        public ServiceBookProxy(HttpClient httpClient)
+        public ServiceBookProxy(HttpClient httpClient, BooksReceiveProducer booksReceiveProducer)
         {
             _httpClient = httpClient;
+            _booksReceiveProducer = booksReceiveProducer;
         }
 
-        #warning ну и тут этот метод нигде не используется и вообще не дописан
         public async void GetAndSaveBooks(int bookCount)
         {
             var response = await _httpClient.GetAsync($"{Url}/{bookCount}");
+            var json = await response.Content.ReadAsStringAsync();
+            var books = JsonConvert.DeserializeObject<List<IBookResponse.Book>>(json);
+            await _booksReceiveProducer.SentPaymentReceivedEvent(books);
         }
     }
 }
