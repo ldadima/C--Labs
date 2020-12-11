@@ -16,7 +16,7 @@ namespace WebShopApplication.Producer
         }
 
         #warning неиспользуемый метод, некорректное название
-        public async Task SentPaymentReceivedEvent(int bookCount)
+        public async Task SentBookRequest(int bookCount)
         {
             var message = new BookRequest(bookCount);
             

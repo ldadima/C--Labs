@@ -1,8 +1,6 @@
-﻿using System;
+﻿using System.ComponentModel;
 using System.Threading.Tasks;
 using ApplicationServices;
-#warning можно, кстати, не делать nuget пакет, а просто добавить референс на тот проект, где контрак лежит
-#warning а то вот у меня сейчас не билдится
 using ContractRabbit;
 using MassTransit;
 

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using ContractRabbit;
 using MassTransit;
@@ -20,8 +19,7 @@ namespace BookDeliveryApplication.Producer
 
         public async Task SentPaymentReceivedEvent(List<IBookResponse.Book> books)
         {
-            var message = new BooksResponse();
-            message.Books = books;
+            var message = new BooksResponse {Books = books};
             var hostConfig = new MassTransitConfiguration();
             _configuration.GetSection("MassTransit").Bind(hostConfig);
             var endpoint = await _sendEndpointProvider.GetSendEndpoint(hostConfig.GetQueueAddress("books-delivery-queue"));

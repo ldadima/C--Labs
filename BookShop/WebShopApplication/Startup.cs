@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Net.Http;
 using ApplicationServices;
-using BookShop;
 using MassTransit;
 using MassTransit.AspNetCoreIntegration;
 using Microsoft.AspNetCore.Builder;
