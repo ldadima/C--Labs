@@ -20,6 +20,7 @@
     <ItemGroup>
       <ProjectReference Include="..\ApplicationServices\ApplicationServices.csproj" />
       <ProjectReference Include="..\BookShop\BookShop.csproj" />
+      <ProjectReference Include="..\WebShopApplication\WebShopApplication.csproj" />
     </ItemGroup>
 
 </Project>

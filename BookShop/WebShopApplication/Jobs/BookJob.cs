@@ -10,17 +10,19 @@ namespace WebShopApplication.Jobs
     [DisallowConcurrentExecution]
     public class BookJob  : IJob
     {
-        private readonly IServiceProxy _serviceProxy;
+        private readonly MarketSystem _marketSystem;
 
-        public BookJob(IServiceProxy serviceProxy)
+        public BookJob(MarketSystem marketSystem)
         {
-            _serviceProxy = serviceProxy;
+            _marketSystem = marketSystem;
         }
-        public Task Execute(IJobExecutionContext context)
+        public async Task Execute(IJobExecutionContext context)
         {
-            Console.Out.WriteLine("Test");
-             _serviceProxy.GetAndSaveBooks();
-            return Task.CompletedTask;
+            Console.Out.WriteLine("Job заказ книг");
+            if (_marketSystem.IsNeedSomeBooks())
+            {
+                await _marketSystem.DeliveryRequest(10);
+            }
         }
     }
 }

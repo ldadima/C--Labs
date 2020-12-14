@@ -12,15 +12,10 @@ namespace ContractRabbit
         class Book
         {
             public long Id { get; set; }
-        
             public string Title { get; set; }
             public double Price { get; set; }
-        
-            public double CurrentPrice { get; set; }
             public string BookGenre { get; set; }
-
             public bool IsNew { get; set; }
-
             public DateTime DateDelivery { get; set; }
         }
     }

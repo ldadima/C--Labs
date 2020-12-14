@@ -6,7 +6,7 @@ namespace BookShop
     [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
     public class ShopLibrary
     {
-        public long Id { get; private set; }
+        public long Id { get; set; }
         public readonly int Capacity;
         public double Balance { get; set; }
         public List<Book> Books { get; set; } = new List<Book>();

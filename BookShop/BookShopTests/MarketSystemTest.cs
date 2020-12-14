@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using ApplicationServices;
 using BookShop;
 using FluentAssertions;
 using NFluent;
 using NUnit.Framework;
+using WebShopApplication.Services;
 
 namespace ShopTests
 {

@@ -1,4 +1,9 @@
-﻿using Microsoft.AspNetCore;
+﻿using System;
+using System.Collections.Generic;
+using AutoMapper;
+using BookShop;
+using ContractRabbit;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
 namespace WebShopApplication

@@ -1,19 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using BookShop;
+using Shop.Infrastructure.EntityFramework;
+using WebShopApplication.Producer;
 
-namespace ApplicationServices
+namespace WebShopApplication.Services
 {
     public class MarketSystem
     {
+        private readonly ShopContextDbContextFactory _dbContextFactory;
         private readonly ShopLibrary _shopLibrary;
-
+        private readonly BookRequestProducer _producer;
+        
         public MarketSystem(ShopLibrary shopLibrary)
         {
             _shopLibrary = shopLibrary;
         }
+        
+        public MarketSystem(ShopContextDbContextFactory dbContextFactory, BookRequestProducer producer)
+        {
+            _dbContextFactory = dbContextFactory;
+            _producer = producer;
+            using var dbContext = _dbContextFactory.GetContext();
+            _shopLibrary = dbContext.GetShopLibrary().Result[0];
+        }
 
+        public List<Book> GetBooks()
+        {
+            return new List<Book>(_shopLibrary.Books);
+        }
         public void SaleBook(long id)
         {
             var find = _shopLibrary.Books.FirstOrDefault(book => book.Id == id);
@@ -26,9 +43,10 @@ namespace ApplicationServices
             _shopLibrary.Books.Remove(find);
             if (IsNeedSomeBooks())
             {
-                DeliveryRequest();
+                DeliveryRequest(10).RunSynchronously();
             }
-
+            
+            UpdateShopInDb();
             Console.WriteLine($"Книга с id {id} продана");
         }
 
@@ -63,12 +81,13 @@ namespace ApplicationServices
                 count++;
             }
             
+            UpdateShopInDb();
             Console.WriteLine($"{count} книг принято");
         }
 
-        private static void DeliveryRequest()
+        public async Task DeliveryRequest(int count)
         {
-            // something connect with BookDeliver
+            await _producer.SentBookRequest(count);
             Console.WriteLine("Заказ поставки системой");
         }
 
@@ -99,7 +118,7 @@ namespace ApplicationServices
             {
                 book.ReturnPrice();
             }
-
+            
             Console.WriteLine("Конец акции");
         }
 
@@ -128,6 +147,12 @@ namespace ApplicationServices
         {
             double count = _shopLibrary.Books.FindAll(book => book.IsNew == false).Count;
             return count / _shopLibrary.Books.Count >= ShopLibrary.OldBooks;
+        }
+
+        private void UpdateShopInDb()
+        {
+            using var context = _dbContextFactory.GetContext();
+            context.AddShopLibrary(_shopLibrary);
         }
     }
 }

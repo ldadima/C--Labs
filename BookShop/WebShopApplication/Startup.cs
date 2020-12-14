@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Net.Http;
-using ApplicationServices;
+using AutoMapper;
+using BookShop;
+using ContractRabbit;
 using MassTransit;
 using MassTransit.AspNetCoreIntegration;
 using Microsoft.AspNetCore.Builder;
@@ -34,10 +36,16 @@ namespace WebShopApplication
                 new ShopContextDbContextFactory(Configuration.GetConnectionString("DefaultConnection")));
             services.AddSingleton<HttpClient>();
             services.AddSingleton<MarketSystem>();
-            services.AddSingleton<IServiceProxy, ServiceProxy>();
             services.AddControllers();
             services.AddBackgroundJobs();
             services.AddSingleton<BookRequestProducer>();
+            var configuration = new MapperConfiguration(c =>
+            {
+                c.AllowNullCollections = true;
+                c.CreateMap<IBookResponse.Book, Book>()
+                    .ForMember(d => d.CurrentPrice,c => c.MapFrom(s => s.Price));
+            });
+            services.AddSingleton(new Mapper(configuration));
             services.AddMassTransit(isp =>
                 {
                     var hostConfig = new MassTransitConfiguration();

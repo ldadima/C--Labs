@@ -10,7 +10,7 @@ namespace Shop.Infrastructure.EntityFramework.Configurations
     {
         public void Configure(EntityTypeBuilder<Book> builder)
         {
-            builder.ToTable(nameof(Book), ShopContext.DefaultSchemaName);
+            builder.ToTable(nameof(Book), ShopContext.DefaultSchemaName).Ignore(x => x.CurrentPrice);
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.Property(x => x.Title).IsRequired().HasMaxLength(256);

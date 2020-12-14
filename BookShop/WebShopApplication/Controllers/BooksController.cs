@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using BookShop;
 using Microsoft.AspNetCore.Mvc;
 using Shop.Infrastructure.EntityFramework;
+using WebShopApplication.Services;
 
 namespace WebShopApplication.Controllers
 {
@@ -10,30 +11,23 @@ namespace WebShopApplication.Controllers
     [ApiController]
     public class BooksController : ControllerBase
     {
-        private readonly ShopContextDbContextFactory _dbContextFactory;
+        private readonly MarketSystem _marketSystem;
 
-        public BooksController(ShopContextDbContextFactory dbContextFactory)
+        public BooksController(MarketSystem marketSystem)
         {
-            _dbContextFactory = dbContextFactory;
+            _marketSystem = marketSystem;
         }
         
         [HttpGet]
-        public async Task<List<ShopLibrary>> GetBooks()
+        public List<Book> GetBooks()
         {
-            using (var context = _dbContextFactory.GetContext())
-            {
-                return await context.GetShopLibrary();
-            }
+            return _marketSystem.GetBooks();
         }
 
-        [HttpPost]
-        public async Task AddBook([FromBody] ShopLibrary shop)
+        [HttpPut]
+        public void SaleBook([FromBody] Book book)
         {
-            using (var context = _dbContextFactory.GetContext())
-            {
-                context.AddShopLibrary(shop);
-                await context.SaveChangesAsync();
-            }
+            
         }
     }
 }
