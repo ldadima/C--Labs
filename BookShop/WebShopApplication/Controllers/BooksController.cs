@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
 using BookShop;
 using Microsoft.AspNetCore.Mvc;
-using Shop.Infrastructure.EntityFramework;
 using WebShopApplication.Services;
 
 namespace WebShopApplication.Controllers

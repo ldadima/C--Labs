@@ -14,7 +14,7 @@ namespace Shop.Infrastructure.EntityFramework.Configurations
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.Property(x => x.Title).IsRequired().HasMaxLength(256);
-            builder.Property(x => x.BookGenre).IsRequired().HasMaxLength(100);
+            builder.Property(x => x.Genre).IsRequired().HasMaxLength(100);
             builder.Property(x => x.IsNew).IsRequired();
             builder.Property(x => x.Price).IsRequired();
             builder.Property(x => x.DateDelivery).IsRequired();

@@ -20,7 +20,7 @@ namespace BookShop
             Capacity = capacity;
         }
         
-        public const double FantasySale = 0.03;
+        public const double FictionSale = 0.03;
         public const double AdventureSale = 0.07;
         public const double EncyclopediaSale = 0.1;
 

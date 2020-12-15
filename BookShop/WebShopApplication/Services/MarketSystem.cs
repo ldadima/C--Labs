@@ -95,15 +95,15 @@ namespace WebShopApplication.Services
         {
             foreach (var book in _shopLibrary.Books)
             {
-                switch (book.BookGenre)
+                switch (book.Genre)
                 {
-                    case "Adventure":
+                    case "adventure":
                         book.ChangePrice(ShopLibrary.AdventureSale);
                         break;
-                    case "Fantasy":
-                        book.ChangePrice(ShopLibrary.FantasySale);
+                    case "fiction":
+                        book.ChangePrice(ShopLibrary.FictionSale);
                         break;
-                    case "Encyclopedia":
+                    case "encyclopedia":
                         book.ChangePrice(ShopLibrary.EncyclopediaSale);
                         break;
                 }

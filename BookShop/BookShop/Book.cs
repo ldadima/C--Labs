@@ -12,7 +12,7 @@ namespace BookShop
         public double Price { get; private set; }
         
         public double CurrentPrice { get; private set; }
-        public string BookGenre { get; private set; }
+        public string Genre { get; private set; }
 
         public bool IsNew { get; private set; }
 
@@ -29,7 +29,7 @@ namespace BookShop
         public Book(long id, string genre, bool isNew, double price, DateTime dateDelivery)
         {
             Id = id;
-            BookGenre = genre;
+            Genre = genre;
             IsNew = isNew;
             Price = price;
             CurrentPrice = Price;

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
 using System.Threading.Tasks;
 using AutoMapper;
 using BookShop;
@@ -11,8 +10,8 @@ namespace WebShopApplication.Consumer
 {
     public class BooksResponseConsumer : IConsumer<IBookResponse>
     {
-        private MarketSystem _marketSystem;
-        private Mapper _mapper;
+        private readonly MarketSystem _marketSystem;
+        private readonly Mapper _mapper;
 
         public BooksResponseConsumer(MarketSystem marketSystem, Mapper mapper)
         {

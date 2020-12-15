@@ -14,7 +14,7 @@ namespace ContractRabbit
             public long Id { get; set; }
             public string Title { get; set; }
             public double Price { get; set; }
-            public string BookGenre { get; set; }
+            public string Genre { get; set; }
             public bool IsNew { get; set; }
             public DateTime DateDelivery { get; set; }
         }
