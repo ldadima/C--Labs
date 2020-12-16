@@ -14,7 +14,8 @@ namespace Shop.Infrastructure.EntityFramework.Configurations
             builder.ToTable(nameof(ShopLibrary), ShopContext.DefaultSchemaName);
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
-            builder.Property(x => x.Balance);
+            builder.Property(x => x.Balance).IsRequired();
+            builder.Property(x => x.Capacity).IsRequired();
 
             builder.HasMany(x => x.Books)
                 .WithOne(b => b.ShopLibrary)

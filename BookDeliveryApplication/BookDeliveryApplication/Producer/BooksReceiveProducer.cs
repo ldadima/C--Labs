@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using ContractRabbit;
 using MassTransit;
@@ -17,8 +18,9 @@ namespace BookDeliveryApplication.Producer
             _configuration = configuration;
         }
 
-        public async Task SentPaymentReceivedEvent(List<IBookResponse.Book> books)
+        public async Task SentBooksResponse(List<IBookResponse.Book> books)
         {
+            Console.Out.WriteLine("Отправка книг");
             var message = new BooksResponse {Books = books};
             var hostConfig = new MassTransitConfiguration();
             _configuration.GetSection("MassTransit").Bind(hostConfig);

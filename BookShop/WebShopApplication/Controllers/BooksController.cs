@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using BookShop;
 using Microsoft.AspNetCore.Mvc;
+using Shop.Infrastructure.EntityFramework;
 using WebShopApplication.Services;
 
 namespace WebShopApplication.Controllers
@@ -10,10 +12,12 @@ namespace WebShopApplication.Controllers
     public class BooksController : ControllerBase
     {
         private readonly MarketSystem _marketSystem;
+        private readonly ShopContextDbContextFactory _dbContextFactory;
 
-        public BooksController(MarketSystem marketSystem)
+        public BooksController(ShopContextDbContextFactory dbContextFactory, MarketSystem marketSystem)
         {
             _marketSystem = marketSystem;
+            _dbContextFactory = dbContextFactory;
         }
         
         [HttpGet]

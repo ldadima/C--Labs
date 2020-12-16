@@ -18,6 +18,7 @@ namespace Shop.Infrastructure.Migrations
                 {
                     Id = table.Column<long>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Capacity = table.Column<int>(nullable: false),
                     Balance = table.Column<double>(nullable: false)
                 },
                 constraints: table =>
@@ -34,7 +35,7 @@ namespace Shop.Infrastructure.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Title = table.Column<string>(maxLength: 256, nullable: false),
                     Price = table.Column<double>(nullable: false),
-                    BookGenre = table.Column<string>(maxLength: 100, nullable: false),
+                    Genre = table.Column<string>(maxLength: 100, nullable: false),
                     IsNew = table.Column<bool>(nullable: false),
                     DateDelivery = table.Column<DateTime>(nullable: false),
                     ShopId = table.Column<long>(nullable: false)
@@ -54,8 +55,8 @@ namespace Shop.Infrastructure.Migrations
             migrationBuilder.InsertData(
                 schema: "public",
                 table: "ShopLibrary",
-                columns: new[] { "Id", "Balance" },
-                values: new object[] { 1L, 1000.0 });
+                columns: new[] { "Id", "Balance", "Capacity" },
+                values: new object[] { 1L, 1000.0, 500 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Book_ShopId",

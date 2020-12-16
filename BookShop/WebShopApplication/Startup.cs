@@ -50,7 +50,7 @@ namespace WebShopApplication
                 {
                     var hostConfig = new MassTransitConfiguration();
                     Configuration.GetSection("MassTransit").Bind(hostConfig);
-
+            
                     return Bus.Factory.CreateUsingRabbitMq(cfg =>
                     {
                         var host = cfg.Host(
@@ -60,10 +60,10 @@ namespace WebShopApplication
                                 h.Username(hostConfig.UserName);
                                 h.Password(hostConfig.Password);
                             });
-
+            
                         cfg.Durable = hostConfig.Durable;
                         cfg.PurgeOnStartup = hostConfig.PurgeOnStartup;
-
+            
                         cfg.ReceiveEndpoint(host,
                             "books-delivery-queue", ep =>
                             {

@@ -10,8 +10,8 @@ using Shop.Infrastructure.EntityFramework;
 namespace Shop.Infrastructure.Migrations
 {
     [DbContext(typeof(ShopContext))]
-    [Migration("20201214115855_Initial")]
-    partial class Initial
+    [Migration("20201216173234_AddShop")]
+    partial class AddShop
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,13 +29,13 @@ namespace Shop.Infrastructure.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("BookGenre")
+                    b.Property<DateTime>("DateDelivery")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Genre")
                         .IsRequired()
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
-
-                    b.Property<DateTime>("DateDelivery")
-                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("IsNew")
                         .HasColumnType("boolean");
@@ -68,6 +68,9 @@ namespace Shop.Infrastructure.Migrations
                     b.Property<double>("Balance")
                         .HasColumnType("double precision");
 
+                    b.Property<int>("Capacity")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
                     b.ToTable("ShopLibrary","public");
@@ -76,7 +79,8 @@ namespace Shop.Infrastructure.Migrations
                         new
                         {
                             Id = 1L,
-                            Balance = 1000.0
+                            Balance = 1000.0,
+                            Capacity = 500
                         });
                 });
 

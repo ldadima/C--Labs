@@ -31,7 +31,7 @@ namespace WebShopApplication.Services
         {
             return new List<Book>(_shopLibrary.Books);
         }
-        public void SaleBook(long id)
+        public async Task SaleBook(long id)
         {
             var find = _shopLibrary.Books.FirstOrDefault(book => book.Id == id);
             if (find == null)
@@ -41,12 +41,8 @@ namespace WebShopApplication.Services
 
             AddBalance(find.CurrentPrice);
             _shopLibrary.Books.Remove(find);
-            if (IsNeedSomeBooks())
-            {
-                DeliveryRequest(10).RunSynchronously();
-            }
             
-            UpdateShopInDb();
+            await UpdateShopInDb();
             Console.WriteLine($"Книга с id {id} продана");
         }
 
@@ -55,7 +51,7 @@ namespace WebShopApplication.Services
             return IsFewBooksLeft() || HasManyOldBooks();
         }
 
-        public void BookReception(IEnumerable<Book> books)
+        public async Task BookReception(IEnumerable<Book> books)
         {
             var count = 0;
             foreach (var book in books)
@@ -81,7 +77,7 @@ namespace WebShopApplication.Services
                 count++;
             }
             
-            UpdateShopInDb();
+            await UpdateShopInDb();
             Console.WriteLine($"{count} книг принято");
         }
 
@@ -109,7 +105,7 @@ namespace WebShopApplication.Services
                 }
             }
             
-            Console.WriteLine("Старт акции");
+            Console.Out.WriteLine("Старт акции");
         }
 
         public void EndSale()
@@ -119,7 +115,7 @@ namespace WebShopApplication.Services
                 book.ReturnPrice();
             }
             
-            Console.WriteLine("Конец акции");
+            Console.Out.WriteLine("Конец акции");
         }
 
 
@@ -149,10 +145,15 @@ namespace WebShopApplication.Services
             return count / _shopLibrary.Books.Count >= ShopLibrary.OldBooks;
         }
 
-        private void UpdateShopInDb()
+        private async Task UpdateShopInDb()
         {
+            if (_dbContextFactory == null)
+            {
+                return;
+            }
             using var context = _dbContextFactory.GetContext();
-            context.AddShopLibrary(_shopLibrary);
+            context.UpdateShopLibrary(_shopLibrary);
+            await context.SaveChangesAsync();
         }
     }
 }

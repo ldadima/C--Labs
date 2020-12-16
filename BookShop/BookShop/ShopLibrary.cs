@@ -7,11 +7,11 @@ namespace BookShop
     public class ShopLibrary
     {
         public long Id { get; set; }
-        public readonly int Capacity;
+        public int Capacity{ get; set; }
         public double Balance { get; set; }
-        public List<Book> Books { get; set; } = new List<Book>();
+        public List<Book> Books { get; set; }
 
-        public ShopLibrary()
+        private ShopLibrary()
         {
             
         }

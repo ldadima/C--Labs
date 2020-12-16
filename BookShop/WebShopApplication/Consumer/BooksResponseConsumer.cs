@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using BookShop;
@@ -18,12 +19,12 @@ namespace WebShopApplication.Consumer
             _marketSystem = marketSystem;
             _mapper = mapper;
         }
-        public Task Consume(ConsumeContext<IBookResponse> context)
+        public async Task Consume(ConsumeContext<IBookResponse> context)
         {
+            Console.Out.WriteLine("Сообщение с книгами принято");
             var message = context.Message;
             var books = _mapper.Map<List<IBookResponse.Book>, List<Book>>(message.Books);
-            _marketSystem.BookReception(books);
-            return Task.CompletedTask;
+            await _marketSystem.BookReception(books);
         }
     }
 }

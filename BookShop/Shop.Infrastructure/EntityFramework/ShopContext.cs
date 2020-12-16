@@ -22,12 +22,13 @@ namespace Shop.Infrastructure.EntityFramework
         public async Task<List<ShopLibrary>> GetShopLibrary()
         {
             return await Set<ShopLibrary>()
+                .Include(s => s.Books)
                 .ToListAsync();
         }
 
-        public void AddShopLibrary(ShopLibrary shop)
+        public void UpdateShopLibrary(ShopLibrary shop)
         {
-            Set<ShopLibrary>().Add(shop);
+            Set<ShopLibrary>().Update(shop);
         }
     }
 }

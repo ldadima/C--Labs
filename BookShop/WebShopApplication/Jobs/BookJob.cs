@@ -18,9 +18,10 @@ namespace WebShopApplication.Jobs
         }
         public async Task Execute(IJobExecutionContext context)
         {
-            Console.Out.WriteLine("Job заказ книг");
+            Console.Out.WriteLine("Job begin");
             if (_marketSystem.IsNeedSomeBooks())
             {
+                Console.Out.WriteLine("Job заказ книг");
                 await _marketSystem.DeliveryRequest(10);
             }
         }
