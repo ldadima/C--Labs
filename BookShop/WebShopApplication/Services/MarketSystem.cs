@@ -42,7 +42,15 @@ namespace WebShopApplication.Services
             AddBalance(find.CurrentPrice);
             _shopLibrary.Books.Remove(find);
             
-            await UpdateShopInDb();
+            if (_dbContextFactory != null)
+            {
+                using var context = _dbContextFactory.GetContext();
+                var shopLibrary = context.GetShopLibrary().Result[0];
+                shopLibrary.Books.Remove(find);
+                shopLibrary.Balance = _shopLibrary.Balance;
+                context.UpdateShopLibrary(_shopLibrary);
+                await context.SaveChangesAsync();
+            }
             Console.WriteLine($"Книга с id {id} продана");
         }
 
@@ -53,7 +61,7 @@ namespace WebShopApplication.Services
 
         public async Task BookReception(IEnumerable<Book> books)
         {
-            var count = 0;
+            var tmpList = new List<Book>();
             foreach (var book in books)
             {
                 if (_shopLibrary.Capacity == _shopLibrary.Books.Count)
@@ -74,11 +82,19 @@ namespace WebShopApplication.Services
                 }
 
                 _shopLibrary.Books.Add(book);
-                count++;
+                tmpList.Add(book);
             }
-            
-            await UpdateShopInDb();
-            Console.WriteLine($"{count} книг принято");
+
+            if (_dbContextFactory != null)
+            {
+                using var context = _dbContextFactory.GetContext();
+                var shopLibrary = context.GetShopLibrary().Result[0];
+                shopLibrary.Books.AddRange(tmpList);
+                shopLibrary.Balance = _shopLibrary.Balance;
+                // context.UpdateShopLibrary(_shopLibrary);
+                await context.SaveChangesAsync();
+            }
+            Console.WriteLine($"{tmpList.Count} книг принято");
         }
 
         public async Task DeliveryRequest(int count)
@@ -143,17 +159,6 @@ namespace WebShopApplication.Services
         {
             double count = _shopLibrary.Books.FindAll(book => book.IsNew == false).Count;
             return count / _shopLibrary.Books.Count >= ShopLibrary.OldBooks;
-        }
-
-        private async Task UpdateShopInDb()
-        {
-            if (_dbContextFactory == null)
-            {
-                return;
-            }
-            using var context = _dbContextFactory.GetContext();
-            context.UpdateShopLibrary(_shopLibrary);
-            await context.SaveChangesAsync();
         }
     }
 }
