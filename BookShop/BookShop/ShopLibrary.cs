@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 
 namespace BookShop
@@ -8,8 +9,8 @@ namespace BookShop
     {
         public long Id { get; set; }
         public int Capacity{ get; set; }
-        public double Balance { get; set; }
-        public List<Book> Books { get; set; }
+        public double Balance { get; private set; }
+        public List<Book> Books { get; private set; }
 
         private ShopLibrary()
         {
@@ -26,6 +27,10 @@ namespace BookShop
 
         public const double PercentLeft = 0.1;
         public const double OldBooks = 0.75;
-        
+
+        public void DeleteBook(long id)
+        {
+            Books = Books.Where(b => b.Id != id).ToList();
+        }
     }
 }

@@ -19,11 +19,11 @@ namespace Shop.Infrastructure.EntityFramework
             modelBuilder.HasDefaultSchema(DefaultSchemaName);
         }
 
-        public async Task<List<ShopLibrary>> GetShopLibrary()
+        public async Task<ShopLibrary> GetShopLibrary()
         {
             return await Set<ShopLibrary>()
                 .Include(s => s.Books)
-                .ToListAsync();
+                .FirstOrDefaultAsync();
         }
 
         public void UpdateShopLibrary(ShopLibrary shop)
