@@ -77,7 +77,7 @@ namespace Shop.Infrastructure.Migrations
                         new
                         {
                             Id = 1L,
-                            Balance = 1000.0,
+                            Balance = 100000.0,
                             Capacity = 500
                         });
                 });

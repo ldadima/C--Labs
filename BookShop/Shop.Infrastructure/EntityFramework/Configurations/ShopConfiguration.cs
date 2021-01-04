@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using BookShop;
+﻿using BookShop;
 using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -22,7 +21,7 @@ namespace Shop.Infrastructure.EntityFramework.Configurations
                 .HasForeignKey(t => t.ShopId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            builder.HasData(new ShopLibrary(500) {Id = 1, Books = new List<Book>(), Balance = 1000});
+            builder.HasData(new ShopLibrary(1, 500, 100000));
         }
     }
 }

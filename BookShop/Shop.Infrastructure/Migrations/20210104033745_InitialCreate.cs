@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Shop.Infrastructure.Migrations
 {
-    public partial class Initial : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -56,7 +56,7 @@ namespace Shop.Infrastructure.Migrations
                 schema: "public",
                 table: "ShopLibrary",
                 columns: new[] { "Id", "Balance", "Capacity" },
-                values: new object[] { 1L, 1000.0, 500 });
+                values: new object[] { 1L, 100000.0, 500 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Book_ShopId",

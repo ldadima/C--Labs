@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using BookShop;
 using Microsoft.AspNetCore.Mvc;
-using Shop.Infrastructure.EntityFramework;
 using WebShopApplication.Services;
 
 namespace WebShopApplication.Controllers
@@ -12,12 +11,10 @@ namespace WebShopApplication.Controllers
     public class BooksController : ControllerBase
     {
         private readonly MarketSystem _marketSystem;
-        private readonly ShopContextDbContextFactory _dbContextFactory;
 
-        public BooksController(ShopContextDbContextFactory dbContextFactory, MarketSystem marketSystem)
+        public BooksController(MarketSystem marketSystem)
         {
             _marketSystem = marketSystem;
-            _dbContextFactory = dbContextFactory;
         }
         
         [HttpGet]
@@ -27,9 +24,26 @@ namespace WebShopApplication.Controllers
         }
 
         [HttpPut]
-        public void SaleBook([FromBody] Book book)
+        [Route("/api/books/{id}")]
+        public async Task<string> SaleBook(long id)
         {
-            
+           var book = await _marketSystem.SaleBook(id);
+           return $"Вы купили книгу {book.Title}";
         }
+
+        [HttpPut]
+        [Route("/api/books/startSale")]
+        public void StartSale()
+        {
+            _marketSystem.BeginSale();
+        }
+
+        [HttpPut]
+        [Route("/api/books/endSale")]
+        public void EndSale()
+        {
+            _marketSystem.EndSale();
+        }
+
     }
 }

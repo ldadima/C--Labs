@@ -16,9 +16,8 @@ namespace ShopTests
         public void IsNeedBooksTest()
         {
             var id = 1;
-            var book = new Book(id, "adventure", false, 100, DateTime.Today);
-            var library = new ShopLibrary(11);
-            library.Books = new List<Book>();
+            var book = new Book(id, "adventure","adventure", false, 100, DateTime.Today);
+            var library = new ShopLibrary(1, 11, 1000);
             var sys = new MarketSystem(library);
             library.Books.AddRange(new[]
             {
@@ -30,9 +29,9 @@ namespace ShopTests
             library.Books.AddRange(new[]
             {
                 book,
-                new Book(2, "adventure", false, 20, DateTime.Today),
-                new Book(3, "adventure", false, 20, DateTime.Today),
-                new Book(4, "adventure", false, 20, DateTime.Today)
+                new Book(2, "adventure","adventure", false, 20, DateTime.Today),
+                new Book(3, "adventure","adventure", false, 20, DateTime.Today),
+                new Book(4, "adventure","adventure", false, 20, DateTime.Today)
             });
             res = sys.IsNeedSomeBooks();
             res.Should().BeTrue();
@@ -40,9 +39,9 @@ namespace ShopTests
             library.Books.AddRange(new[]
             {
                 book,
-                new Book(6, "adventure", true, 20, DateTime.Today),
-                new Book(7, "adventure", true, 20, DateTime.Today),
-                new Book(8, "adventure", true, 20, DateTime.Today)
+                new Book(6, "adventure","adventure", true, 20, DateTime.Today),
+                new Book(7, "adventure","adventure", true, 20, DateTime.Today),
+                new Book(8, "adventure","adventure", true, 20, DateTime.Today)
             });
             res = sys.IsNeedSomeBooks();
             res.Should().BeFalse();
@@ -51,55 +50,43 @@ namespace ShopTests
         [Test]
         public void SaleBookTest()
         {
-            var outstr = new StringBuilder("");
-            using (var sw = new StringWriter(outstr))
-            {
-                var id = 1;
-                var book = new Book(id, "adventure", false, 100, DateTime.Today);
-                var library = new ShopLibrary(11);
-                library.Books = new List<Book>();
-                var sys = new MarketSystem(library);
-                var rTextWriter = Console.Out;
-                Console.SetOut(sw);
-                Check.ThatCode(() => sys.SaleBook(id).GetAwaiter().GetResult())
-                    .Throws<ArgumentException>()
-                    .WithMessage("Book not Found");
+            var id = 1;
+            var book = new Book(id, "adventure","adventure", false, 100, DateTime.Today);
+            var library = new ShopLibrary(1, 11, 100);
+            Check.ThatCode(() => library.SaleBook(id))
+                .Throws<KeyNotFoundException>()
+                .WithMessage($"Book with id - {id} not found");
 
-                library.Books.AddRange(new[]
-                {
-                    book
-                });
-                sys.SaleBook(id).GetAwaiter().GetResult();
-                outstr.ToString().Should().Be($"Книга с id {id} продана\r\n");
-                outstr.Clear();
-                
-                Console.SetOut(rTextWriter);
-            }
+            library.Books.AddRange(new[]
+            {
+                book
+            });
+            library.SaleBook(id);
+            library.Balance.Should().Be(200);
         }
 
         [Test]
         public void ReceptionTest()
         {
-            var book1 = new Book(1, "adventure", false, 100, DateTime.Today);
-            var book2 = new Book(2, "adventure", false, 1000, DateTime.Today);
-            var book3 = new Book(1, "adventure", false, 100, DateTime.Today);
-            var book4 = new Book(3, "adventure", false, 100, DateTime.Today);
-            var book5 = new Book(4, "adventure", false, 100, DateTime.Today);
+            var book1 = new Book(1, "adventure","adventure", false, 100, DateTime.Today);
+            var book2 = new Book(2, "adventure","adventure", false, 1000, DateTime.Today);
+            var book3 = new Book(3, "adventure","adventure", false, 100, DateTime.Today);
+            var book4 = new Book(4, "adventure","adventure", false, 100, DateTime.Today);
 
-            var library = new ShopLibrary(2) {Balance = 50};
-            library.Books = new List<Book>();
-            var sys = new MarketSystem(library);
+            var library = new ShopLibrary(1, 2, 50);
+
             var outstr = new StringBuilder("");
             using (var sw = new StringWriter(outstr))
             {
                 var rWriter = Console.Out;
                 Console.SetOut(sw);
-                sys.BookReception(new List<Book>() {book1, book2, book3, book4}).GetAwaiter().GetResult();
-                outstr.ToString().Should().Contain("2 книг принято");
+                library.TryAddBook(book1).Should().BeTrue();
+                library.TryAddBook(book2).Should().BeFalse();
+                library.TryAddBook(book3).Should().BeTrue();
                 outstr.ToString().Should()
                     .Contain($"На книгу c id {book2.Id} по цене {book2.CurrentPrice * 0.07} не хватает денег");
-                outstr.ToString().Should().Contain($"Книга с id {book3.Id} уже есть");
-                Check.ThatCode(() => sys.BookReception(new List<Book>() {book5}).GetAwaiter().GetResult())
+
+                Check.ThatCode(() => library.TryAddBook(book4))
                     .Throws<OutOfMemoryException>()
                     .WithMessage("Storage of library is full");
 
@@ -112,11 +99,12 @@ namespace ShopTests
         {
             var books = new List<Book>()
             {
-                new Book(1, "fiction", true, 100, DateTime.Today),
-                new Book(2, "adventure", true, 100, DateTime.Today),
-                new Book(3, "encyclopedia", true, 100, DateTime.Today)
+                new Book(1, "adventure","fiction", true, 100, DateTime.Today),
+                new Book(2, "adventure","adventure", true, 100, DateTime.Today),
+                new Book(3, "adventure","encyclopedia", true, 100, DateTime.Today)
             };
-            var tmpShop = new ShopLibrary(1) {Balance = 50, Books = books};
+            var tmpShop = new ShopLibrary(1, 3, 100);
+            tmpShop.Books.AddRange(books);
             var system = new MarketSystem(tmpShop);
             system.BeginSale();
             foreach (var book in tmpShop.Books)

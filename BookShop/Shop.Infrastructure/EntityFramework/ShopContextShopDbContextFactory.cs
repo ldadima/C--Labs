@@ -1,4 +1,5 @@
-﻿namespace Shop.Infrastructure.EntityFramework
+﻿
+namespace Shop.Infrastructure.EntityFramework
 {
     public sealed class ShopContextDbContextFactory
     {

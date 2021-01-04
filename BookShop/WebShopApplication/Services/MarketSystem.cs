@@ -10,78 +10,73 @@ namespace WebShopApplication.Services
 {
     public class MarketSystem
     {
-        private readonly ShopContextDbContextFactory _dbContextFactory;
-        private readonly ShopLibrary _shopLibrary;
+        private readonly ShopContextDbContextFactory _shopDbContextFactory;
         private readonly BookRequestProducer _producer;
+        private ShopLibrary _shop;
 
-        public MarketSystem(ShopContextDbContextFactory dbContextFactory, BookRequestProducer producer)
+        public MarketSystem(ShopContextDbContextFactory shopDbContextFactory, BookRequestProducer producer)
         {
-            _dbContextFactory = dbContextFactory;
+            _shopDbContextFactory = shopDbContextFactory;
             _producer = producer;
-            using var dbContext = _dbContextFactory.GetContext();
-            _shopLibrary = dbContext.GetShopLibrary().Result[0];
+            using var context = _shopDbContextFactory.GetContext();
+            _shop = context.GetShopLibrary().Result;
+        }
+
+        public MarketSystem(ShopLibrary shopLibrary)
+        {
+            _shop = shopLibrary;
         }
 
         public List<Book> GetBooks()
         {
-            return new List<Book>(_shopLibrary.Books);
+            if (_shop == null)
+            {
+                throw new InvalidOperationException("Shop not found in database");
+            }
+            return new List<Book>(_shop.Books);
         }
 
-        public async Task SaleBook(long id)
+        public async Task<Book> SaleBook(long id)
         {
-            using var context = _dbContextFactory.GetContext();
+            await using var context = _shopDbContextFactory.GetContext();
             var shopLibrary = await context.GetShopLibrary();
-            #warning check shopLibrary != null
-            shopLibrary.DeleteBook(id);
-#warning заменить на метод
-            shopLibrary.Balance = _shopLibrary.Balance;
-            // context.UpdateShopLibrary(_shopLibrary);
+            if (shopLibrary == null)
+            {
+                throw new InvalidOperationException("Shop not found in database");
+            }
+            var book = shopLibrary.SaleBook(id);
             await context.SaveChangesAsync();
+            _shop = shopLibrary;
             Console.WriteLine($"Книга с id {id} продана");
+            return book;
         }
 
         public bool IsNeedSomeBooks()
         {
-            return IsFewBooksLeft() || HasManyOldBooks();
+            return _shop.IsFewBooksLeft() || _shop.HasManyOldBooks();
         }
 
         public async Task BookReception(IEnumerable<Book> books)
         {
-            var tmpList = new List<Book>();
-                         foreach (var book in books)
-                         {
-                             if (_shopLibrary.Capacity == _shopLibrary.Books.Count)
-                             {
-                                 throw new OutOfMemoryException("Storage of library is full");
-                             }
-             
-                             if (_shopLibrary.Books.FirstOrDefault(bookL => bookL.Id == book.Id) != null)
-                             {
-                                 Console.WriteLine($"Книга с id {book.Id} уже есть");
-                                 continue;
-                             }
-             
-                             if (!ReduceBalance(book.CurrentPrice * 0.07))
-                             {
-                                 Console.WriteLine($"На книгу c id {book.Id} по цене {book.CurrentPrice * 0.07} не хватает денег");
-                                 continue;
-                             }
-             
-                             _shopLibrary.Books.Add(book);
-                             tmpList.Add(book);
-                         }
-
-            if (_dbContextFactory != null)
+            await using var context = _shopDbContextFactory.GetContext();
+            var shopLibrary = await context.GetShopLibrary();
+            var count = 0;
+            try
             {
-                using var context = _dbContextFactory.GetContext();
-                var shopLibrary = context.GetShopLibrary().Result[0];
-                shopLibrary.Books.AddRange(tmpList);
-                shopLibrary.Balance = _shopLibrary.Balance;
-                // context.UpdateShopLibrary(_shopLibrary);
+                count += books.Count(book => shopLibrary.TryAddBook(book));
+            }
+            catch (OutOfMemoryException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            
+            if (_shopDbContextFactory != null)
+            {
                 await context.SaveChangesAsync();
             }
 
-            Console.WriteLine($"{tmpList.Count} книг принято");
+            _shop = shopLibrary;
+            Console.WriteLine($"{count} книг принято");
         }
 
         public async Task DeliveryRequest(int count)
@@ -92,7 +87,7 @@ namespace WebShopApplication.Services
 
         public void BeginSale()
         {
-            foreach (var book in _shopLibrary.Books)
+            foreach (var book in _shop.Books)
             {
                 switch (book.Genre)
                 {
@@ -113,40 +108,13 @@ namespace WebShopApplication.Services
 
         public void EndSale()
         {
-            foreach (var book in _shopLibrary.Books)
+            foreach (var book in _shop.Books)
             {
                 book.ReturnPrice();
             }
 
             Console.Out.WriteLine("Конец акции");
         }
-
-
-        private void AddBalance(double plus)
-        {
-            _shopLibrary.Balance += plus;
-        }
-
-        private bool ReduceBalance(double reduce)
-        {
-            if (reduce > _shopLibrary.Balance)
-            {
-                return false;
-            }
-
-            _shopLibrary.Balance -= reduce;
-            return true;
-        }
-
-        private bool IsFewBooksLeft()
-        {
-            return _shopLibrary.Books.Count / (double) _shopLibrary.Capacity <= ShopLibrary.PercentLeft;
-        }
-
-        private bool HasManyOldBooks()
-        {
-            double count = _shopLibrary.Books.FindAll(book => book.IsNew == false).Count;
-            return count / _shopLibrary.Books.Count >= ShopLibrary.OldBooks;
-        }
+        
     }
 }

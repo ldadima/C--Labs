@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.Json.Serialization;
 using JetBrains.Annotations;
 
 namespace BookShop
@@ -17,18 +18,20 @@ namespace BookShop
         public bool IsNew { get; private set; }
 
         public DateTime DateDelivery { get; private set; }
-        
-        public long ShopId { get; private set; }
-        public ShopLibrary ShopLibrary { get; private set; }
+
+        [JsonIgnore]
+        public long ShopId { get; set; } = 1;
+        [JsonIgnore]
+        public ShopLibrary ShopLibrary { get; set; }
 
         private Book()
         {
-            
         }
-
-        public Book(long id, string genre, bool isNew, double price, DateTime dateDelivery)
+        
+        public Book(long id, string title, string genre, bool isNew, double price, DateTime dateDelivery)
         {
             Id = id;
+            Title = title;
             Genre = genre;
             IsNew = isNew;
             Price = price;

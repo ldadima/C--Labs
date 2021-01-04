@@ -34,18 +34,10 @@ namespace WebShopApplication
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddSingleton(provider =>
                 new ShopContextDbContextFactory(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddSingleton<HttpClient>();
             services.AddSingleton<MarketSystem>();
             services.AddControllers();
             services.AddBackgroundJobs();
             services.AddSingleton<BookRequestProducer>();
-            var configuration = new MapperConfiguration(c =>
-            {
-                c.AllowNullCollections = true;
-                c.CreateMap<IBookResponse.Book, Book>()
-                    .ForMember(d => d.CurrentPrice,c => c.MapFrom(s => s.Price));
-            });
-            services.AddSingleton(new Mapper(configuration));
             services.AddMassTransit(isp =>
                 {
                     var hostConfig = new MassTransitConfiguration();

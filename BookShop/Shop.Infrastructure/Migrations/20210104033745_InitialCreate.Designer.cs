@@ -10,8 +10,8 @@ using Shop.Infrastructure.EntityFramework;
 namespace Shop.Infrastructure.Migrations
 {
     [DbContext(typeof(ShopContext))]
-    [Migration("20201216173234_AddShop")]
-    partial class AddShop
+    [Migration("20210104033745_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -79,7 +79,7 @@ namespace Shop.Infrastructure.Migrations
                         new
                         {
                             Id = 1L,
-                            Balance = 1000.0,
+                            Balance = 100000.0,
                             Capacity = 500
                         });
                 });
