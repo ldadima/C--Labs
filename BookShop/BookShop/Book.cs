@@ -41,7 +41,10 @@ namespace BookShop
 
         public void ChangePrice(double percent)
         {
-            CurrentPrice *= 1 - percent;
+            if (Math.Abs(CurrentPrice - Price) == 0)
+            {
+                CurrentPrice *= 1 - percent;
+            }
         }
 
         public void ReturnPrice()

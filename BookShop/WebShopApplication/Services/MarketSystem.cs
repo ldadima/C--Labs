@@ -18,8 +18,6 @@ namespace WebShopApplication.Services
         {
             _shopDbContextFactory = shopDbContextFactory;
             _producer = producer;
-            using var context = _shopDbContextFactory.GetContext();
-            _shop = context.GetShopLibrary().Result;
         }
 
         public MarketSystem(ShopLibrary shopLibrary)
@@ -27,13 +25,16 @@ namespace WebShopApplication.Services
             _shop = shopLibrary;
         }
 
-        public List<Book> GetBooks()
+        public async Task<List<Book>> GetBooks()
         {
-            if (_shop == null)
+            await using var context = _shopDbContextFactory.GetContext();
+            var shopLibrary = await context.GetShopLibrary();
+            if (shopLibrary == null)
             {
                 throw new InvalidOperationException("Shop not found in database");
             }
-            return new List<Book>(_shop.Books);
+
+            return new List<Book>(shopLibrary.Books);
         }
 
         public async Task<Book> SaleBook(long id)
@@ -85,9 +86,11 @@ namespace WebShopApplication.Services
             Console.WriteLine("Заказ поставки системой");
         }
 
-        public void BeginSale()
+        public async Task BeginSale()
         {
-            foreach (var book in _shop.Books)
+            await using var context = _shopDbContextFactory.GetContext();
+            var shopLibrary = await context.GetShopLibrary();
+            foreach (var book in shopLibrary.Books)
             {
                 switch (book.Genre)
                 {
@@ -102,17 +105,23 @@ namespace WebShopApplication.Services
                         break;
                 }
             }
-
+            
+            await context.SaveChangesAsync();
+            
             Console.Out.WriteLine("Старт акции");
         }
 
-        public void EndSale()
+        public async Task EndSale()
         {
-            foreach (var book in _shop.Books)
+            await using var context = _shopDbContextFactory.GetContext();
+            var shopLibrary = await context.GetShopLibrary();
+            foreach (var book in shopLibrary.Books)
             {
                 book.ReturnPrice();
             }
 
+            await context.SaveChangesAsync();
+            
             Console.Out.WriteLine("Конец акции");
         }
         

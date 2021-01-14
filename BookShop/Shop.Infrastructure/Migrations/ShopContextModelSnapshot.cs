@@ -27,6 +27,9 @@ namespace Shop.Infrastructure.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<double>("CurrentPrice")
+                        .HasColumnType("double precision");
+
                     b.Property<DateTime>("DateDelivery")
                         .HasColumnType("timestamp without time zone");
 

@@ -18,9 +18,9 @@ namespace WebShopApplication.Controllers
         }
         
         [HttpGet]
-        public List<Book> GetBooks()
+        public async Task<List<Book>> GetBooks()
         {
-            return _marketSystem.GetBooks();
+            return await _marketSystem.GetBooks();
         }
 
         [HttpPut]
@@ -33,16 +33,16 @@ namespace WebShopApplication.Controllers
 
         [HttpPut]
         [Route("/api/books/startSale")]
-        public void StartSale()
+        public async Task StartSale()
         {
-            _marketSystem.BeginSale();
+            await _marketSystem.BeginSale();
         }
 
         [HttpPut]
         [Route("/api/books/endSale")]
-        public void EndSale()
+        public async Task EndSale()
         {
-            _marketSystem.EndSale();
+            await _marketSystem.EndSale();
         }
 
     }

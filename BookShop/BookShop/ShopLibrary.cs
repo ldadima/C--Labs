@@ -13,6 +13,8 @@ namespace BookShop
         public double Balance { get; private set; }
         public List<Book> Books { get; private set; } = new List<Book>();
 
+        private bool _isSale = false;
+
         private ShopLibrary()
         {
             
@@ -59,6 +61,22 @@ namespace BookShop
                 return false;
             }
 
+            if (_isSale)
+            {
+                switch (book.Genre)
+                {
+                    case "adventure":
+                        book.ChangePrice(AdventureSale);
+                        break;
+                    case "fiction":
+                        book.ChangePrice(FictionSale);
+                        break;
+                    case "encyclopedia":
+                        book.ChangePrice(EncyclopediaSale);
+                        break;
+                }
+            }
+            
             Books.Add(book);
             return true;
         }

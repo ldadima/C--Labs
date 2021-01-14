@@ -23,7 +23,7 @@ namespace WebShopApplication.Consumer
             var books = new List<Book>();
             foreach (var book in message.Books)
             {
-                books.Add(new Book(0, book.Title, book.Genre, book.IsNew, book.Price, book.DateDelivery));
+                books.Add(new Book(0, book.Title, book.Genre, book.IsNew, book.Price, book.DateOfDelivery));
             }
             await _marketSystem.BookReception(books);
         }

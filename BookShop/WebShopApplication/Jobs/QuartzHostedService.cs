@@ -39,7 +39,7 @@ namespace WebShopApplication.Jobs
         {
             var trigger = TriggerBuilder.Create()
                 .WithIdentity(nameof(BookJob))
-                .WithSimpleSchedule(x => x.WithIntervalInMinutes(1).RepeatForever())
+                .WithSimpleSchedule(x => x.WithIntervalInSeconds(15).RepeatForever())
                 .Build();
             var job = JobBuilder.Create<BookJob>().WithIdentity(nameof(BookJob)).Build();
             await Scheduler.ScheduleJob(job, trigger);

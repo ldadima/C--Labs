@@ -10,8 +10,8 @@ using Shop.Infrastructure.EntityFramework;
 namespace Shop.Infrastructure.Migrations
 {
     [DbContext(typeof(ShopContext))]
-    [Migration("20210104033758_AddShop")]
-    partial class AddShop
+    [Migration("20210114113628_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,6 +28,9 @@ namespace Shop.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<double>("CurrentPrice")
+                        .HasColumnType("double precision");
 
                     b.Property<DateTime>("DateDelivery")
                         .HasColumnType("timestamp without time zone");
